@@ -1,0 +1,21 @@
+/* city pins on the Routes map; the active one grows, pulses and shows its name */
+.pin { position: absolute; width: 0; height: 0; padding: 0; }
+.pin i { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: var(--orange); border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .25); transition: transform .4s var(--ease); }
+.pin i::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--orange); opacity: 0; }
+.pin span { position: absolute; left: 50%; bottom: 14px; translate: -50% 0; white-space: nowrap; padding: 5px 11px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 12.5px; font-weight: 500; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .4s var(--ease); pointer-events: none; }
+.pin.on i { transform: scale(1.5); }
+.pin.on i::after { animation: pin-pulse 1.8s ease-out infinite; }
+.pin.on span { opacity: 1; transform: none; }
+@keyframes pin-pulse { from { opacity: .8; transform: scale(1); } to { opacity: 0; transform: scale(3.2); } }
+
+.city { transition: background .35s, border-color .35s, opacity 1s var(--ease), transform 1s var(--ease); }
+.city.on { background: #fff; border-color: var(--orange); }
+.city-dots { display: none; }
+
+@media (max-width: 640px) {
+  .city-dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+  .city-dots button { width: 8px; height: 8px; border-radius: 999px; background: rgba(28, 18, 13, .2); transition: width .3s var(--ease), background .3s; }
+  .city-dots button[aria-selected="true"] { width: 24px; background: var(--ink); }
+  .pin span { font-size: 11px; padding: 4px 9px; bottom: 11px; }
+  .pin i { left: -5px; top: -5px; width: 10px; height: 10px; border-width: 2px; }
+}

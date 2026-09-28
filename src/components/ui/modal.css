@@ -1,0 +1,20 @@
+.modal { padding: 0; border: 0; border-radius: var(--r); background: #fff; color: var(--ink); width: min(420px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); box-shadow: 0 40px 90px -30px rgba(20, 10, 5, .55); }
+.modal::backdrop { background: rgba(20, 12, 8, .45); }
+.modal[open] { animation: modal-in .3s var(--ease); }
+@keyframes modal-in { from { opacity: 0; transform: translateY(14px) scale(.98); } }
+.modal-box { padding: 18px 18px 20px; }
+.modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.modal-head b { font-weight: 500; font-size: 17px; }
+.modal-head button { width: 34px; height: 34px; border-radius: 50%; font-size: 22px; line-height: 1; color: var(--ink-2); }
+.modal-head button:hover { background: #f5ebe4; }
+.modal-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
+.modal-foot small { font-size: 12.5px; color: var(--ink-3); }
+.modal-foot .orange-btn { margin: 0; border: 0; cursor: pointer; padding: 11px 26px; }
+.modal .dp { border: 0; padding: 0; }
+
+/* time slots */
+.ts h4 { font-size: 12.5px; font-weight: 500; color: var(--ink-3); margin: 6px 0 8px; }
+.ts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.ts-grid button { padding: 10px 0; border-radius: 10px; border: 1px solid rgba(28, 18, 13, .12); font-size: 13.5px; font-variant-numeric: tabular-nums; transition: background .15s, border-color .15s, color .15s; }
+.ts-grid button:hover { border-color: rgba(28, 18, 13, .35); }
+.ts-grid button[aria-pressed="true"] { background: var(--orange); border-color: var(--orange); color: #fff; }

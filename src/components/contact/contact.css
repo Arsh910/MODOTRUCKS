@@ -1,0 +1,73 @@
+/* Contact page: details left, form card right. The card overlaps the dark band that starts under it. */
+.ct { position: relative; z-index: 1; padding: calc(110px + 3vw) 0 40px; background: #fff; }
+.ct-grid { display: grid; grid-template-columns: 1fr minmax(0, 560px); gap: clamp(32px, 6vw, 110px); align-items: start; }
+.ct-info { padding-top: 12px; }
+.ct-info h1 { font-size: clamp(38px, 4.4vw, 68px); font-weight: 500; letter-spacing: -.035em; line-height: 1.05; }
+.ct-lead { color: var(--ink-2); font-size: clamp(15px, 1.2vw, 17px); max-width: 42ch; margin-top: 16px; }
+.ct-list { list-style: none; display: grid; gap: 22px; margin-top: 40px; }
+.ct-list li { display: flex; gap: 16px; align-items: flex-start; }
+.ct-list svg { flex: none; width: 22px; height: 22px; margin-top: 2px; fill: none; stroke: var(--orange); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.ct-list small { display: block; font-size: 12.5px; color: var(--ink-3); }
+.ct-list a { font-size: 16px; overflow-wrap: anywhere; transition: color .2s; }
+.ct-list a:hover { color: var(--orange); }
+.ct-card { position: relative; z-index: 1; background: #fff; border-radius: var(--r); padding: clamp(24px, 3vw, 40px); box-shadow: 0 40px 80px -40px rgba(40, 20, 10, .45), 0 2px 10px rgba(40, 20, 10, .05); --hang: 110px; translate: 0 var(--hang); /* hangs into the dark section below; `translate`, not `transform`, so the fade-in (which animates transform) can’t reset it */ }
+.ct-card h2 { font-size: clamp(22px, 2vw, 28px); font-weight: 500; letter-spacing: -.02em; margin-bottom: 22px; }
+.ct-faq { padding-top: 130px; } /* ~70px of card overhang + breathing room */
+
+.ef-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; }
+.ef .wide { grid-column: 1 / -1; }
+/* step indicator */
+.ef-steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 24px; }
+.ef-steps button { width: 100%; display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 2px solid rgba(28, 18, 13, .1); color: var(--ink-3); font-size: 13.5px; font-weight: 500; text-align: left; transition: color .3s, border-color .3s; }
+.ef-steps button:disabled { cursor: default; }
+.ef-steps i { display: grid; place-items: center; flex: none; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(28, 18, 13, .2); font-style: normal; font-size: 12px; transition: background .3s, color .3s, border-color .3s; }
+.ef-steps .on button { color: var(--ink); border-color: var(--orange); }
+.ef-steps .on i { background: var(--orange); border-color: var(--orange); color: #fff; }
+.ef-steps .done button { color: var(--ink-2); border-color: var(--ink); }
+.ef-steps .done i { background: var(--ink); border-color: var(--ink); color: #fff; }
+.ef-body { animation: ef-in .45s var(--ease) both; min-height: 190px; }
+@keyframes ef-in { from { opacity: 0; transform: translateX(18px); } }
+/* plan choice cards */
+.ef-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ef-plan { display: grid; gap: 2px; text-align: left; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(28, 18, 13, .14); background: #fff; transition: border-color .2s, background .2s; }
+.ef-plan b { font-weight: 500; font-size: 15px; }
+.ef-plan small { font-size: 12.5px; color: var(--ink-3); }
+.ef-plan:hover { border-color: rgba(28, 18, 13, .35); }
+.ef-plan[aria-checked="true"] { border-color: var(--orange); background: #fff4ee; box-shadow: 0 0 0 3px rgba(232, 98, 44, .15); }
+/* review */
+.ef-sum { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; margin: 0; padding: 16px; border-radius: 12px; background: #faf5f1; }
+.ef-sum dt { font-size: 12px; color: var(--ink-3); }
+.ef-sum dd { margin: 2px 0 0; font-size: 14px; overflow-wrap: anywhere; }
+.ef-back { font-size: 14.5px; font-weight: 500; color: var(--ink-2); padding: 12px 6px; margin-right: auto; }
+.ef-back:hover { color: var(--ink); }
+.ef-field { display: grid; gap: 8px; }
+.ef-field > span { font-size: 13px; font-weight: 500; color: var(--ink-2); }
+.ef-pick { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; font-size: 15px; color: var(--ink); background: #fff; border: 1px solid rgba(28, 18, 13, .14); border-radius: 12px; padding: 13px 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: border-color .2s; }
+.ef-pick:hover { border-color: rgba(28, 18, 13, .35); }
+.ef-pick svg { flex: none; width: 18px; height: 18px; fill: none; stroke: var(--ink); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.ef-field input, .ef-field select, .ef-field textarea { font: inherit; font-size: 16px; color: var(--ink); background: #fff; border: 1px solid rgba(28, 18, 13, .14); border-radius: 12px; padding: 13px 14px; width: 100%; transition: border-color .2s, box-shadow .2s; }
+.ef-field textarea { resize: vertical; }
+.ef-field :is(input, select, textarea):focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(232, 98, 44, .18); }
+.ef-field [aria-invalid="true"] { border-color: #c0321a; }
+.ef-field em { font-style: normal; font-size: 12.5px; color: #b42318; }
+.ef-foot { display: flex; align-items: center; justify-content: flex-end; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+.ef-foot .orange-btn { margin-top: 0; padding: 14px 32px; font-size: 15px; border: 0; cursor: pointer; }
+.ef-foot .orange-btn:disabled { opacity: .6; cursor: default; }
+.ef-err { color: #b42318; font-size: 14px; }
+.ef-done { padding: 32px; border-radius: var(--r); background: #fff; }
+.ef-done h3 { font-size: 26px; font-weight: 500; }
+.ef-done p { color: var(--ink-2); margin-top: 8px; }
+.ef-done .dark-btn { border: 0; cursor: pointer; }
+
+@media (max-width: 900px) {
+  .ct-grid { grid-template-columns: 1fr; }
+  .ct-card { --hang: 70px; }
+  .ct-faq { padding-top: 80px; }
+}
+@media (max-width: 640px) {
+  .ef-grid, .ef-plans, .ef-sum { grid-template-columns: 1fr; gap: 12px; }
+  .ef-steps span { font-size: 11.5px; }
+  .ef-steps button { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .ef-foot .orange-btn { flex: 1; }
+  .ef-back { margin-right: 0; }
+}
