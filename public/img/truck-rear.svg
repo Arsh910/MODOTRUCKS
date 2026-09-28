@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 900 520">
+  <!-- Placeholder: the MODO truck seen from the rear-right corner, both screens showing, no background.
+       Replace with a cut-out photo (transparent PNG) of the real truck at the same angle. -->
+  <defs>
+    <linearGradient id="ad" x1="0" x2="1"><stop offset="0" stop-color="#F26A2E"/><stop offset="1" stop-color="#E0521E"/></linearGradient>
+    <linearGradient id="body" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e2ddd7"/></linearGradient>
+    <radialGradient id="shadow"><stop offset="0" stop-opacity=".35"/><stop offset="1" stop-opacity="0"/></radialGradient>
+    <pattern id="led" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0,3.5H4M3.5,0V4" stroke="#000" stroke-opacity=".18"/></pattern>
+    <clipPath id="rear"><rect width="300" height="300"/></clipPath>
+    <clipPath id="side"><rect width="400" height="300"/></clipPath>
+    <!-- one ad on a 700 x 300 strip: 0-300 wraps the back, 300-700 runs down the side.
+         Pre-mirrored, because the whole truck is mirrored below to show the rear-right. -->
+    <g id="strip"><g transform="translate(700,0) scale(-1,1)">
+      <rect width="700" height="300" fill="url(#ad)"/>
+      <rect x="40" y="58" width="620" height="4" fill="#fff" opacity=".85"/>
+      <rect x="40" y="238" width="620" height="4" fill="#fff" opacity=".85"/>
+      <text x="350" y="165" text-anchor="middle" font-family="Archivo, Arial Black, Arial, sans-serif" font-weight="800" font-size="88" fill="#fff">YOUR BRAND</text>
+      <text x="350" y="212" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-weight="700" font-size="24" letter-spacing="6" fill="#fff">LIVE ON THE ROAD</text>
+      <rect width="700" height="300" fill="url(#led)"/>
+    </g></g>
+  </defs>
+
+  <!-- drawn from the rear-left, then mirrored: we see the back and the right-hand side -->
+  <g transform="translate(980,0) scale(-1,1)">
+  <ellipse cx="470" cy="515" rx="430" ry="34" fill="url(#shadow)"/>
+
+  <!-- cab roof, behind the box -->
+  <path d="M670,236 L800,213 L620,163 L490,186 Z" fill="#d9d3cc" stroke="#c9c2ba" stroke-width="2"/>
+  <!-- far-side wheels -->
+  <g fill="#17181a"><circle cx="196" cy="462" r="44"/><circle cx="626" cy="434" r="44"/></g>
+
+  <!-- side plane: chassis, cab, near wheels -->
+  <g transform="matrix(1,-0.18,0,1,260,190)">
+    <rect x="-10" y="300" width="620" height="24" fill="#2a2b2e"/>
+    <path d="M410,120 L540,120 Q568,120 578,150 L610,230 L610,326 L410,326 Z" fill="url(#body)" stroke="#d3cdc6" stroke-width="2"/>
+    <path d="M428,136 L535,136 Q552,136 558,156 L574,206 L428,206 Z" fill="#27303b"/>
+    <path d="M410,252 H610" stroke="#E8622C" stroke-width="7"/>
+    <path d="M500,214 V318" stroke="#cfc8c0" stroke-width="2"/>
+    <g transform="translate(455,280)" fill="none"><circle r="7" stroke="#E8622C" stroke-width="2.4"/><circle r="11" stroke="#C9562A" stroke-width="1.8"/><circle r="14.5" stroke="#8E3F22" stroke-width="1.2"/></g>
+    <g fill="#17181a"><circle cx="110" cy="338" r="46"/><circle cx="530" cy="338" r="46"/></g>
+    <g fill="#b9bdc2"><circle cx="110" cy="338" r="22"/><circle cx="530" cy="338" r="22"/></g>
+    <g fill="#6f747a"><circle cx="110" cy="338" r="7"/><circle cx="530" cy="338" r="7"/></g>
+  </g>
+
+  <!-- box: roof, then the two screens as one strip, then a thin white frame -->
+  <path d="M74,134 L260,184 L666,112 L480,62 Z" fill="#f4f1ed" stroke="#d9d4ce" stroke-width="2"/>
+  <g transform="matrix(0.6,0.16667,0,1,80,140)"><g clip-path="url(#rear)"><use href="#strip"/></g></g>
+  <g transform="matrix(1,-0.18,0,1,260,190)"><g clip-path="url(#side)"><use href="#strip" x="-300"/></g></g>
+  <path d="M80,140 L260,190 L660,118 L660,418 L260,490 L80,440 Z" fill="none" stroke="#f4f1ed" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M80,440 L260,490 L660,418 L660,432 L260,506 L80,455 Z" fill="#e9e5e0" stroke="#d3cdc6" stroke-width="1.5"/>
+  <!-- tail lights -->
+  <rect x="96" y="452" width="22" height="8" rx="2" fill="#ff3b1f" transform="rotate(15 96 452)"/>
+  <rect x="222" y="486" width="22" height="8" rx="2" fill="#ff3b1f" transform="rotate(15 222 486)"/>
+  </g>
+</svg>

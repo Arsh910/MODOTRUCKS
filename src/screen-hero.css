@@ -1,0 +1,94 @@
+/* Screen page top: big headline left, pitch + button right, the screen drawn with dimensions below. */
+/* one screen tall: text on top, the drawing fills the rest and tucks up behind the text */
+.sh { position: relative; height: 100svh; min-height: 640px; max-height: 1100px; padding-top: calc(110px + 2vh); overflow: hidden; }
+.sh-head { position: relative; z-index: 1; display: grid; grid-template-columns: 1.5fr 1fr; gap: 28px 64px; align-items: start; }
+.sh-head h1 { font-size: clamp(40px, 5.6vw, 88px); font-weight: 500; letter-spacing: -.035em; line-height: 1.02; max-width: 16ch; }
+.sh-side { justify-self: end; max-width: 34ch; padding-top: 12px; }
+.sh-side p { color: var(--ink-2); font-size: 15.5px; }
+.sh-side .dark-btn { margin-top: 20px; }
+.sh-art { position: absolute; left: 50%; bottom: 2vh; height: calc(100% - 190px - 6vw); max-width: 96vw; aspect-ratio: 810 / 530; translate: -44% 0; }
+.sh-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.sh-dim path { fill: none; stroke: #E8622C; stroke-width: 2.5; }
+.sh-label text { font-family: Geist, Arial, sans-serif; font-size: 20px; font-weight: 500; fill: var(--ink); }
+.sh-label text.sub { font-size: 14px; fill: var(--ink-3); }
+/* ad change: new ad sweeps in over the old one with a light leading edge; old one drifts back and darkens */
+.sh-ad .sh-shade { fill: #000; opacity: 0; }
+.sh-ad .sh-edge { fill: #fff; opacity: 0; }
+.sh-ad.enter { animation: sh-in 1s cubic-bezier(.75, 0, .2, 1) both; }
+.sh-ad.enter .sh-edge { animation: sh-edge 1s ease both; }
+.sh-ad.enter .sh-line { transform-box: fill-box; transform-origin: center; animation: sh-grow .8s cubic-bezier(.2, .8, .2, 1) .55s both; }
+.sh-ad.enter .sh-t1 { animation: sh-rise .8s cubic-bezier(.2, .8, .2, 1) .5s both; }
+.sh-ad.enter .sh-t2 { animation: sh-rise .8s cubic-bezier(.2, .8, .2, 1) .65s both; }
+.sh-ad.leave { animation: sh-out 1s cubic-bezier(.75, 0, .2, 1) both; }
+.sh-ad.leave .sh-shade { animation: sh-dim 1s ease both; }
+@keyframes sh-in { from { transform: translateX(700px); } }
+@keyframes sh-out { to { transform: translateX(-180px); } }
+@keyframes sh-dim { to { opacity: .45; } }
+@keyframes sh-edge { 0%, 70% { opacity: .7; } 100% { opacity: 0; } }
+@keyframes sh-grow { from { transform: scaleX(0); } }
+@keyframes sh-rise { from { opacity: 0; transform: translateY(26px); } }
+.sh-sheen { animation: sh-sheen 5s var(--ease) infinite; }
+@keyframes sh-sheen { from { transform: translateX(-700px); } 60%, to { transform: translateX(700px); } }
+
+/* specs: centred title, 2x2 grid divided by a cross that fades out at its ends, diamond in the middle */
+.sp { padding-block: clamp(96px, 10vw, 160px); }
+.sp-label { text-align: center; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.sp-title { text-align: center; font-size: clamp(32px, 3.8vw, 58px); font-weight: 500; letter-spacing: -.03em; line-height: 1.08; max-width: 18ch; margin: 12px auto 0; text-wrap: balance; }
+.sp-grid { position: relative; list-style: none; display: grid; grid-template-columns: 1fr 1fr; max-width: 1080px; margin: clamp(56px, 6vw, 88px) auto 0; }
+.sp-grid::before, .sp-grid::after { content: ""; position: absolute; pointer-events: none; }
+.sp-grid::before { /* the cross: one vertical and one horizontal line, fading at the ends */
+  inset: 0;
+  background:
+    linear-gradient(to bottom, transparent, rgba(28, 18, 13, .22) 20%, rgba(28, 18, 13, .22) 80%, transparent) center / 1px 100% no-repeat,
+    linear-gradient(to right, transparent, rgba(28, 18, 13, .22) 20%, rgba(28, 18, 13, .22) 80%, transparent) center / 100% 1px no-repeat;
+}
+.sp-grid::after { left: 50%; top: 50%; width: 12px; height: 12px; background: var(--orange); transform: translate(-50%, -50%) rotate(45deg); }
+.sp-grid li { display: flex; flex-direction: column; align-items: center; text-align: center; padding: clamp(44px, 5vw, 72px) clamp(20px, 4vw, 60px); }
+.sp-grid li i { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 15px; background: var(--brown); }
+.sp-grid svg { width: 28px; height: 28px; fill: none; stroke: #fff; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.sp-grid h3 { font-size: clamp(22px, 2vw, 30px); font-weight: 500; letter-spacing: -.015em; margin-top: 24px; }
+.sp-grid p { font-size: clamp(16px, 1.2vw, 18px); color: var(--ink-2); margin-top: 12px; max-width: 30ch; line-height: 1.55; }
+
+/* number cards on brown: quiet cards, the lit one turns cream */
+.nc { padding-block: clamp(72px, 8vw, 120px); }
+.nc-row { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.nc-row li { display: flex; flex-direction: column; justify-content: space-between; gap: 56px; min-height: clamp(320px, 26vw, 400px); padding: 26px; border-radius: var(--r); background: rgba(255, 255, 255, .045); border: 1px solid rgba(255, 255, 255, .08); cursor: pointer; transition: background .45s var(--ease), color .45s, border-color .45s, opacity 1s var(--ease), transform 1s var(--ease); }
+.nc-row li i { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #f6ebe3; transition: background .45s; }
+.nc-row svg { width: 24px; height: 24px; fill: none; stroke: var(--brown); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: stroke .45s; }
+.nc-row b { display: block; font-weight: 400; font-size: clamp(44px, 4vw, 64px); letter-spacing: -.03em; line-height: 1; }
+.nc-row h3 { font-size: 19px; font-weight: 500; margin-top: 16px; }
+.nc-row p { font-size: 14.5px; color: #b9a99e; margin-top: 8px; transition: color .45s; }
+.nc-row li.on { background: #f6ebe3; color: var(--ink); border-color: #f6ebe3; }
+.nc-row li.on i { background: var(--brown); }
+.nc-row li.on svg { stroke: #f6ebe3; }
+.nc-row li.on p { color: var(--ink-2); }
+
+@media (max-width: 900px) {
+  .nc-row { grid-template-columns: 1fr 1fr; }
+  .nc-row li { min-height: 280px; }
+  .sh-head { grid-template-columns: 1fr; }
+  .sh-side { justify-self: start; padding-top: 0; }
+  .sh { height: auto; min-height: 0; max-height: none; padding-bottom: 40px; }
+  .sh-art { position: relative; left: auto; bottom: auto; height: auto; width: 100%; max-width: none; translate: none; margin-top: 24px; padding-inline: var(--gut); }
+}
+@media (max-width: 640px) {
+  /* phones: compact 2x2, all four numbers visible at once */
+  .nc-row { gap: 10px; }
+  .nc-row li { min-height: 0; gap: 28px; padding: 18px 16px 20px; border-radius: 16px; }
+  .nc-row li i { width: 40px; height: 40px; }
+  .nc-row svg { width: 19px; height: 19px; }
+  .nc-row b { font-size: 38px; }
+  .nc-row h3 { font-size: 15px; margin-top: 10px; }
+  .nc-row p { font-size: 12.5px; }
+  /* phones keep the 2x2 cross, just tighter */
+  .sp-grid { margin-top: 40px; }
+  .sp-grid li { padding: 30px 10px; }
+  .sp-grid li i { width: 46px; height: 46px; border-radius: 12px; }
+  .sp-grid svg { width: 22px; height: 22px; }
+  .sp-grid h3 { font-size: 17px; margin-top: 16px; }
+  .sp-grid p { font-size: 13.5px; margin-top: 8px; }
+  .sp-grid::after { width: 9px; height: 9px; }
+  .sh-art { padding-inline: 8px; margin-top: 8px; }
+  .sh-label text { font-size: 26px; } /* the drawing is small on a phone, so its labels scale up */
+  .sh-label text.sub { font-size: 18px; }
+}
