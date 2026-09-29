@@ -1,24 +1,24 @@
-import { Logo } from '../ui/Logo.jsx'
 import { PLANS } from '../../data/plans.js'
+import { BOOK_LINK } from '../../config/site.js'
 import { PlanDiagram } from './PlanDiagram.jsx'
 
-// Cards linking to plan pages ("Other ways to use the screen"), each showing that plan's animation.
+// Panels linking to the other plan pages ("Other ways to use the screen"), each playing that plan's diagram.
 export function PlanCards({ items = Object.entries(PLANS) }) {
   return (
-    <div className={`news n${items.length}`}>
+    <>
+    <p className="swipe-hint">Swipe</p>
+    <div className="panels" style={{ '--n': items.length }}>
       {items.map(([k, p], i) => (
-        <a key={k} href={`/plans/${k}`} className="news-card" data-reveal style={{ '--d': i }}>
-          <div className="news-img">
-            <div className="news-dia"><PlanDiagram id={k} /></div>
-            <div className="news-strip"><Logo compact /><span>{p.tag}</span><span className="news-go">View plan →</span></div>
+        <article key={k} className="panel" data-reveal style={{ '--d': i }}>
+          <span className="dot-label">{p.tag}</span>
+          <div className="panel-art"><PlanDiagram id={k} /></div>
+          <div className="panel-bar">
+            <div><small>Plan {p.no}</small><b>{p.name}</b></div>
+            <div className="btns"><a className="box-btn" href={`/plans/${k}`}>Learn more</a><a className="orange-btn" href={BOOK_LINK}>Book</a></div>
           </div>
-          <div className="news-body">
-            <h3>{p.card.t}</h3>
-            <span className="news-meta">{p.card.meta}</span>
-            <p>{p.lead}</p>
-          </div>
-        </a>
+        </article>
       ))}
     </div>
+    </>
   )
 }

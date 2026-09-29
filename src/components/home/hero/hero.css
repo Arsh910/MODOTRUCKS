@@ -106,15 +106,15 @@
 }
 
 /* ---------- headline ---------- */
-.hero-cap { position: absolute; left: 0; right: 0; top: calc(70px + 10vh); z-index: 3; padding-inline: var(--gut); text-align: center; text-shadow: 0 2px 16px rgba(0, 0, 0, .6); animation: rise 1.2s .4s var(--ease) both; }
-.hero-cap h1 { font-size: clamp(38px, 5vw, 80px); letter-spacing: -.03em; line-height: 1.02; }
-.hero-cap p { font-size: clamp(14px, 1.2vw, 18px); opacity: .7; margin: 14px auto 0; max-width: 46ch; }
-.hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 26px; }
+.hero-cap { position: absolute; left: 0; right: 0; top: calc(96px + 5vh); z-index: 3; padding-inline: var(--gut); text-shadow: 0 2px 20px rgba(0, 0, 0, .5); }
+.hero-cap h1 { font-size: clamp(44px, 7.4vw, 128px); line-height: .92; max-width: 11ch; animation: hero-line 1.2s 1s var(--ease) both; }
+.hero-cap p { font-size: clamp(15px, 1.2vw, 18px); color: rgba(255, 255, 255, .72); margin-top: 20px; max-width: 40ch; animation: rise 1s 1.3s var(--ease) both; }
+@keyframes hero-line { from { transform: translateY(.4em); clip-path: inset(0 0 100% 0); } to { clip-path: inset(-.2em -.2em -.3em -.2em); } }
+.hero-btns { display: flex; flex-wrap: wrap; gap: 0; margin-top: 28px; animation: rise 1s 1.45s var(--ease) both; }
 .hero-btn { text-shadow: none; }
-/* both buttons: same size, text centred (overrides the nav button's own padding) */
-.hero-btns a { display: inline-grid; place-items: center; width: 150px; height: 46px; padding: 0; margin: 0; /* margin: 0 undoes the nav button's margin-left: auto on phones */ font-size: 15px; font-weight: 500; line-height: 1; }
-.hero-ghost { border-radius: 999px; border: 1px solid rgba(255, 255, 255, .55); text-shadow: none; background: rgba(0, 0, 0, .15); transition: background .2s, color .2s; }
-.hero-ghost:hover { background: #fff; color: var(--ink); }
+.hero-btns a { display: inline-grid; place-items: center; height: 50px; padding: 0 28px; margin: 0; font-size: 15px; font-weight: 500; line-height: 1; }
+.hero-ghost { background: var(--panel-2); color: var(--ink); text-shadow: none; transition: background .25s, color .25s; }
+.hero-ghost:hover { background: var(--ink); color: var(--bg); }
 
 /* ---------- daytime ---------- */
 .hero[data-time="day"] .sky-day { opacity: 1; }
@@ -135,8 +135,9 @@
   .orbit { --arc: .7; } /* overhead sits just above the headline */
   .pan.far { height: 45%; } .pan.mid { height: 33%; } .pan.near { height: 16%; } .pan.lamps { height: 22%; }
   .road .dash { --p: 120px; top: 41%; height: 3px; background: repeating-linear-gradient(90deg, rgba(246, 217, 196, .5) 0 46px, transparent 46px var(--p)); animation-duration: .375s; }
-  .hero-cap { top: 27%; }
-  .hero-btns a { width: 136px; height: 42px; font-size: 13.5px; }
+  .hero-cap { top: 88px; }
+  .hero-cap h1 { font-size: 13vw; }
+  .hero-btns a { height: 46px; padding: 0 20px; font-size: 14px; }
   /* the truck is width-limited on a phone, so stretch the body 15% taller from road level;
      wheels grow 15% (staying round) and move up to sit in the taller arches */
   .truck-wrap { --from: 150vw; --wheel: 11.24%; --wheel-y: 79.33%; width: 98vw; bottom: 8.8%; }

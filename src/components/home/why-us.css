@@ -1,46 +1,26 @@
-/* Why us: three reasons | one picture | three reasons. The picture follows the active reason. */
-.wu { padding-block: clamp(72px, 8vw, 130px); }
-.wu-head { text-align: center; }
-.wu-head h2 { font-size: clamp(40px, 5vw, 76px); font-weight: 500; letter-spacing: -.035em; line-height: 1.02; }
-.wu-head h2 em { font-weight: 300; }
-.wu-head p { color: var(--ink-2); font-size: clamp(15px, 1.2vw, 18px); max-width: 48ch; margin: 16px auto 0; }
+/* Why us: reasons as rows | the picture for the active one */
+.wu-body { display: grid; grid-template-columns: 1fr 1fr; gap: 12px clamp(24px, 4vw, 72px); align-items: start; }
+.wu-list li { padding: 0; }
+.wu-list li:hover { padding-left: 0; }
+.wu-list button { display: grid; grid-template-columns: 1fr auto; gap: 6px 24px; align-items: baseline; width: 100%; padding: 16px 0 18px; text-align: left; transition: padding .5s var(--ease); }
+.wu-list li.on button, .wu-list button:hover { padding-left: 14px; }
+.wu-list li.on b { color: var(--orange); }
+.wu-list button p { grid-column: 1 / -1; }
+.wu-pic { position: relative; margin: 0; aspect-ratio: 4 / 4.4; overflow: hidden; background: var(--panel-2); scroll-margin-top: 90px; }
+.wu-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.08); transition: opacity .7s ease, transform 1.4s var(--ease); }
+.wu-pic img.contain { object-fit: contain; padding: 10% 8% 36%; }
+.wu-pic img.on { opacity: 1; transform: none; }
+.wu-pic figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 24px; background: var(--panel-2); animation: wu-cap .6s var(--ease) both; }
+.wu-pic figcaption p { font-size: 14.5px; color: var(--ink-2); margin-top: 10px; max-width: 52ch; }
+@keyframes wu-cap { from { transform: translateY(100%); } }
 
-.wu-body { display: grid; grid-template-columns: 1fr minmax(320px, 1.15fr) 1fr; gap: clamp(24px, 3vw, 56px); align-items: center; margin-top: clamp(44px, 5vw, 72px); }
-.wu-col { display: grid; gap: 10px; }
-.wu-reason { display: grid; justify-items: center; text-align: center; gap: 8px; padding: 18px 16px; border-radius: 16px; cursor: pointer; transition: background .35s var(--ease), box-shadow .35s var(--ease), opacity 1s var(--ease), transform 1s var(--ease); }
-.wu-reason svg { width: 28px; height: 28px; fill: none; stroke: var(--orange); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.wu-reason h3 { font-size: clamp(17px, 1.4vw, 21px); font-weight: 500; }
-.wu-reason p { font-size: 14px; color: var(--ink-2); max-width: 30ch; }
-.wu-reason.on { background: #fff; box-shadow: 0 18px 40px -28px rgba(120, 60, 30, .5); }
-
-/* the picture: offset orange block behind it, like a print on a card */
-.wu-pic { position: relative; margin: 0 18px 18px 0; scroll-margin-top: 100px; }
-.wu-pic::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border-radius: 6px; background: rgba(232, 98, 44, .28); }
-.wu-frame { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 6px; background: #f3e4d8; }
-.wu-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity .6s ease, transform 1.2s var(--ease); }
-.wu-frame img.contain { object-fit: contain; padding: 12% 8% 34%; }
-.wu-frame img.on { opacity: 1; transform: none; }
-.wu-frame figcaption { position: absolute; left: 12px; right: 12px; bottom: 12px; padding: 16px 18px; border-radius: 12px; background: rgba(22, 13, 10, .82); color: #f6ebe3; animation: wu-cap .6s var(--ease) both; }
-.wu-frame figcaption b { display: block; font-weight: 500; font-size: 16px; }
-.wu-frame figcaption span { display: block; font-size: 13.5px; color: #d9c9bd; margin-top: 6px; line-height: 1.5; }
-@keyframes wu-cap { from { opacity: 0; transform: translateY(12px); } }
-
-.wu-cta { text-align: center; margin-top: clamp(40px, 5vw, 64px); }
-.wu-cta .orange-btn { padding: 14px 34px; font-size: 15px; box-shadow: 0 14px 30px -14px rgba(232, 98, 44, .8); }
-
-/* tablets + phones: picture first, then the six reasons as a 2 x 3 grid of taps */
 @media (max-width: 900px) {
-  .wu-body { grid-template-columns: 1fr 1fr; grid-template-areas: "pic pic" "l r"; }
-  .wu-pic { grid-area: pic; max-width: 460px; width: calc(100% - 18px); justify-self: center; }
-  .wu-col.left { grid-area: l; } .wu-col.right { grid-area: r; }
+  .wu-body { grid-template-columns: 1fr; }
+  .wu-pic { order: -1; aspect-ratio: 4 / 3.4; }
 }
 @media (max-width: 640px) {
-  .wu-body { gap: 26px 8px; }
-  .wu-frame { aspect-ratio: 4 / 3; } /* short enough that picture + the six taps fit one screen */
-  .wu-reason { padding: 14px 8px; gap: 6px; }
-  .wu-reason svg { width: 24px; height: 24px; }
-  .wu-reason h3 { font-size: 15px; }
-  .wu-reason p { display: none; } /* the picture's caption carries the detail */
-  .wu-frame figcaption { padding: 12px 14px; }
-  .wu-frame figcaption span { font-size: 12.5px; }
+  .wu-list button { padding: 12px 0 14px; }
+  .wu-list button p { display: none; }
+  .wu-pic figcaption { padding: 16px; }
+  .wu-pic figcaption p { font-size: 13px; }
 }

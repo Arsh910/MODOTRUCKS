@@ -1,26 +1,14 @@
-/* Plan page top: reuses the Screen page hero (.sh), plus a readout of the plan under the screen. */
-.plan-sh .plan-no { font-size: 14px; color: var(--orange); font-weight: 500; }
-.plan-sh h1 { margin-top: 10px; font-size: clamp(36px, 4.4vw, 68px); max-width: 14ch; }
-/* plan titles run to 3 lines, so the screen sits a little lower and right than on the Screen page */
-.plan-sh .sh-art { height: calc(100% - 260px - 7vw); translate: -38% 0; }
-@media (max-width: 900px) { .plan-sh .sh-art { height: auto; translate: none; } }
-.plan-sh .plan-ctas { margin-top: 20px; }
-.plan-sh .plan-ctas .dark-btn { margin-top: 0; }
-.line-btn { padding: 11px 22px; border-radius: 999px; border: 1px solid rgba(28, 18, 13, .25); font-size: 14px; font-weight: 500; transition: background .2s, color .2s; }
-.line-btn:hover { background: var(--ink); color: #fff; }
-.plan-sh .sh-art { display: flex; flex-direction: column; }
-.plan-sh .sh-svg { flex: 1; min-height: 0; }
-
+/* Plan page top: the readout under the screen drawing. */
 /* meter under the screen */
 .pm { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 14px auto 0; width: min(560px, 100%); font-size: 13px; color: var(--ink-2); flex-wrap: wrap; }
 .pm b { font-weight: 500; color: var(--ink); }
-.pm-bar { flex: 1; min-width: 120px; height: 8px; border-radius: 999px; background: rgba(28, 18, 13, .1); overflow: hidden; }
+.pm-bar { flex: 1; min-width: 120px; height: 8px; border-radius: 0; background: rgba(255, 255, 255, .1); overflow: hidden; }
 .pm-bar i { display: block; height: 100%; background: var(--orange); transform-origin: left; animation: pm-fill 6s linear infinite; }
 @keyframes pm-fill { from { transform: scaleX(0); } }
 .pm-shift b, .pm-loop span { flex-basis: 100%; text-align: center; }
-.pm-loop i { display: grid; place-items: center; width: 44px; height: 32px; border-radius: 8px; font-style: normal; font-size: 12px; background: #fff; border: 1px solid rgba(28, 18, 13, .1); color: var(--ink-3); transition: background .3s, color .3s, transform .3s var(--ease), border-color .3s; }
+.pm-loop i { display: grid; place-items: center; width: 44px; height: 32px; border-radius: 0; font-style: normal; font-size: 12px; background: var(--panel-2); border: 1px solid rgba(255, 255, 255, .1); color: var(--ink-3); transition: background .3s, color .3s, transform .3s var(--ease), border-color .3s; }
 .pm-loop i.you { width: 52px; }
-.pm-loop i.on { background: var(--ink); border-color: var(--ink); color: #fff; transform: translateY(-3px); }
+.pm-loop i.on { background: var(--ink); border-color: var(--ink); color: var(--bg); transform: translateY(-3px); }
 .pm-loop i.you.on { background: var(--orange); border-color: var(--orange); }
 
 @media (max-width: 640px) {

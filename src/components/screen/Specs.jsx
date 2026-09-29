@@ -1,21 +1,22 @@
 import './screen.css'
 
-// "The specs": centred title, then a 2x2 grid split by a fading cross with a diamond at its centre.
+// "The specs": four flat cards, the spec as the label, what it means in the middle.
 export function Specs({ items }) {
   return (
-    <section className="warm sp">
+    <section className="sec">
       <div className="wrap">
-        <p className="sp-label" data-reveal>The specs</p>
-        <h2 className="sp-title" data-reveal>Built to be looked at, from every side of the road</h2>
-        <ul className="sp-grid">
-          {items.map(([t, d, icon], i) => (
-            <li key={t} data-reveal style={{ '--d': i }}>
-              <i><svg viewBox="0 0 24 24" aria-hidden="true"><path d={icon} /></svg></i>
-              <h3>{t}</h3>
-              <p>{d}</p>
-            </li>
+        <div className="sec-head">
+          <h2 className="sec-title" data-reveal>Built to be looked at, from every side of the road</h2>
+        </div>
+        <div className="ncards stack" style={{ '--n': 4 }}>
+          {items.map(([t, d], i) => (
+            <div key={t} className="ncard" data-reveal style={{ '--d': i }}>
+              <span className="dot-label">{t}</span>
+              <div className="ncard-mid"><h3>{d}</h3></div>
+              <small>{String(i + 1).padStart(2, '0')}</small>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   )

@@ -58,25 +58,25 @@ function WhiteTruck() {
 
 export function HowSteps() {
   return (
-    <section className="how" id="how">
+    <section className="sec how" id="how">
       <div className="wrap">
-        <div className="how-top">
-          <div className="how-copy">
-            <h2 data-reveal>Four steps to put your ad on the road</h2>
-            <p className="how-text" data-reveal>Pick a plan and your dates, send your ad, and the truck does the rest. Most requests are confirmed the same day.</p>
-            <div className="how-btns" data-reveal>
-              <a className="how-btn" href={BOOK_LINK}>Book Now <i aria-hidden="true">→</i></a>
-              <a className="how-btn ghost" href={AD_LINK}>Don’t have an ad?</a>
+        <div className="sec-head">
+          <h2 className="sec-title" data-reveal>Four steps to put your ad on the road</h2>
+          <div>
+            <p data-reveal>Pick a plan and your dates, send your ad, and the truck does the rest. Most requests are confirmed the same day.</p>
+            <div className="btns" data-reveal>
+              <a className="orange-btn" href={BOOK_LINK}>Book Now</a>
+              <a className="box-btn" href={AD_LINK}>Don’t have an ad?</a>
             </div>
           </div>
-          <div className="how-truck" data-reveal><WhiteTruck /></div>
         </div>
-        <ol className="how-steps">
+        <div className="how-stage"><div className="how-truck" data-reveal><WhiteTruck /></div></div>
+        <ol className="ncards stack how-steps" style={{ '--n': 4 }}>
           {STEPS.map(([h, p], i) => (
-            <li key={h} data-reveal style={{ '--d': i }}>
-              <span className="how-num">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{h}</h3>
-              <p>{p}</p>
+            <li key={h} className="ncard" data-reveal style={{ '--d': i }}>
+              <span className="dot-label">Step {i + 1}</span>
+              <div className="ncard-mid"><h3>{h}</h3><p>{p}</p></div>
+              <small>{String(i + 1).padStart(2, '0')}</small>
             </li>
           ))}
         </ol>

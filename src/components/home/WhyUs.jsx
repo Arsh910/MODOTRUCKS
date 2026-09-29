@@ -3,18 +3,17 @@ import { REASONS } from '../../data/whyUs.js'
 import { BOOK_LINK } from '../../config/site.js'
 import './why-us.css'
 
-// Why us: reasons on either side of one picture. Hover or tap a reason and the picture
-// swaps to it, with the longer explanation laid over it. On its own it cycles through them,
+// Why us: the reasons as rows on the left, one picture on the right. Hover or tap a reason and the picture
+// swaps to it, with the longer explanation under it. On its own it cycles through them,
 // pausing while the pointer is over the reasons.
 
 function Reason({ r, i, on, pick }) {
   return (
-    <button type="button" className={`wu-reason ${on ? 'on' : ''}`} aria-pressed={on}
-      onMouseEnter={() => pick(i)} onClick={() => pick(i)} data-reveal style={{ '--d': i % 3 }}>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d={r.icon} /></svg>
-      <h3>{r.t}</h3>
-      <p>{r.s}</p>
-    </button>
+    <li className={on ? 'on' : ''} data-reveal style={{ '--d': i }}>
+      <button type="button" aria-pressed={on} onMouseEnter={() => pick(i)} onClick={() => pick(i)}>
+        <b>{r.t}</b><span>{String(i + 1).padStart(2, '0')}</span><p>{r.s}</p>
+      </button>
+    </li>
   )
 }
 
@@ -34,26 +33,24 @@ export function WhyUs() {
     const r = pic.current.getBoundingClientRect()
     if (r.top < 60) pic.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
-  const side = list => list.map(i => <Reason key={i} r={REASONS[i]} i={i} on={on === i} pick={pick} />)
   const r = REASONS[on]
   return (
-    <section className="warm wu">
+    <section className="sec wu">
       <div className="wrap">
-        <div className="wu-head">
-          <h2 data-reveal>Why choose <em>us?</em></h2>
-          <p data-reveal>The one ad in the Tricity nobody can scroll past, planned, made and proven by one team.</p>
+        <div className="sec-head">
+          <h2 className="sec-title" data-reveal>Why choose us?</h2>
+          <div>
+            <p data-reveal>The one ad in the Tricity nobody can scroll past, planned, made and proven by one team.</p>
+            <div className="btns" data-reveal><a className="orange-btn" href={BOOK_LINK}>Book Now</a></div>
+          </div>
         </div>
         <div className="wu-body" onMouseEnter={() => { held.current = true }} onMouseLeave={() => { held.current = false }}>
-          <div className="wu-col left">{side([0, 1, 2])}</div>
+          <ol className="rows wu-list">{REASONS.map((x, i) => <Reason key={x.t} r={x} i={i} on={on === i} pick={pick} />)}</ol>
           <figure className="wu-pic" ref={pic} data-reveal>
-            <div className="wu-frame">
-              {REASONS.map((x, i) => <img key={x.img} src={x.img} alt={i === on ? x.t : ''} loading="lazy" className={`${i === on ? 'on' : ''} ${x.contain ? 'contain' : ''}`} />)}
-              <figcaption key={on}><b>{r.t}</b><span>{r.d}</span></figcaption>
-            </div>
+            {REASONS.map((x, i) => <img key={x.img} src={x.img} alt={i === on ? x.t : ''} loading="lazy" className={`${i === on ? 'on' : ''} ${x.contain ? 'contain' : ''}`} />)}
+            <figcaption key={on}><span className="dot-label">{r.t}</span><p>{r.d}</p></figcaption>
           </figure>
-          <div className="wu-col right">{side([3, 4, 5])}</div>
         </div>
-        <div className="wu-cta"><a className="orange-btn" href={BOOK_LINK}>Book Now</a></div>
       </div>
     </section>
   )

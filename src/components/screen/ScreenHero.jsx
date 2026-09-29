@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { BOOK_LINK } from '../../config/site.js'
 import './screen.css'
+import { PageHero } from '../ui/PageHero.jsx'
 
 // Example ads for made-up brands. Each one fills the whole 700 x 300 strip, so it wraps the corner.
 const ADS = [
@@ -128,15 +128,8 @@ export function ScreenHero() {
     return () => clearInterval(t)
   }, [])
   return (
-    <section className="warm sh">
-      <div className="wrap sh-head">
-        <h1 data-reveal>One screen, wrapped around the corner</h1>
-        <div className="sh-side">
-          <p data-reveal>The back and the side of the truck are a single LED screen with no gap between them. Your ad flows round the corner in one piece.</p>
-          <a className="dark-btn" href={BOOK_LINK} data-reveal>Book Now</a>
-        </div>
-      </div>
-      <div className="sh-art" data-reveal><ScreenDiagram now={ad.now} prev={ad.prev} /></div>
-    </section>
+    <PageHero label="The Screen" title="One screen, wrapped around the corner"
+      lead="The back and the side of the truck are a single LED screen with no gap between them. Your ad flows round the corner in one piece."
+      art={<div className="sh-art"><ScreenDiagram now={ad.now} prev={ad.prev} /></div>} />
   )
 }

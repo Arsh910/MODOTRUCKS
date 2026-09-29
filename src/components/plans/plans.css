@@ -1,55 +1,22 @@
-/* Plans showcase: big title, three cards with small drawings of each plan.
-   On phones the cards become a swipe carousel that curves along an arc. */
-
-.ps { overflow: hidden; }
-.ps-intro { padding-block: calc(130px + 4vw) clamp(64px, 7vw, 110px); } /* top of the page: clear the fixed nav */
-.ps-intro .ps-title { text-wrap: balance; }
-.ps-cards { padding-block: clamp(64px, 7vw, 110px) clamp(80px, 9vw, 140px); }
-.ps-step { text-align: center; font-size: clamp(26px, 2.6vw, 40px); font-weight: 500; letter-spacing: -.02em; }
-.ps-title { font-size: clamp(40px, 6vw, 92px); font-weight: 500; letter-spacing: -.035em; line-height: 1.14; text-align: center; max-width: 14ch; margin-inline: auto; }
-.ps-title mark { color: inherit; background: linear-gradient(90deg, #ffd9c2, #fbc3a3); border-radius: 999px; padding: 0 .28em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.ps-points { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 36px; margin: 34px auto 0; }
-.ps-points li { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 500; }
-.ps-points i { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: #fff; box-shadow: 0 10px 24px -14px rgba(120, 60, 30, .45); }
-.ps-points svg { width: 22px; height: 22px; fill: none; stroke: var(--orange); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.ps-note { text-align: center; font-size: 13.5px; color: var(--ink-3); margin-top: 22px; }
-.ps-cta { text-align: center; margin-top: 34px; }
-.ps-btn { display: inline-flex; align-items: center; gap: 12px; padding: 14px 30px; font-size: 15px; }
-.ps-btn span { transition: transform .3s var(--ease); }
-.ps-btn:hover span { transform: translateY(3px); }
-
-/* cards */
-.ps-track { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 1680px; margin: clamp(32px, 4vw, 56px) auto 0; padding-inline: var(--gut); }
-.ps-slot { display: flex; }
-.ps-card {
-  flex: 1; display: flex; flex-direction: column; padding: 30px; border-radius: 22px; background: #ffffff;
-  border: 6px solid rgba(255, 255, 255, .75); box-shadow: 0 30px 60px -30px rgba(120, 60, 30, .35), 0 1px 0 rgba(120, 60, 30, .06);
-  transition: translate .45s var(--ease), box-shadow .45s var(--ease), opacity 1s var(--ease), transform 1s var(--ease);
-}
-.ps-card:hover { translate: 0 -6px; box-shadow: 0 40px 70px -30px rgba(120, 60, 30, .45), 0 1px 0 rgba(120, 60, 30, .06); }
-.ps-card h3 { font-size: clamp(24px, 2vw, 30px); font-weight: 500; letter-spacing: -.02em; }
-.ps-card > p { color: var(--ink-2); font-size: 14.5px; margin-top: 8px; max-width: 34ch; }
-.ps-more { margin-top: 20px; font-size: 14px; font-weight: 500; color: var(--orange); }
-.ps-more span { display: inline-block; transition: transform .3s var(--ease); }
-.ps-card:hover .ps-more span { transform: translateX(4px); }
-
-/* the drawing area inside each card */
-.ps-art { flex: 1; margin-top: 24px; min-height: 250px; padding: 22px; border-radius: 14px; background: linear-gradient(160deg, #fdeee3, #f8dcc8); display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+/* Plans: the small drawings of how each plan uses the screen (inside the plan panels). */
+.ps-art { display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+.ps-ways { margin-top: 28px; max-width: 520px; }
+.shifts-pic { width: min(100%, 420px); margin-top: 36px; }
 
 /* whole screen: a mini truck screen and the shift bar */
-.ps-screen { position: relative; overflow: hidden; border-radius: 14px; background: #141414; padding: 8px; box-shadow: 0 18px 30px -18px rgba(0, 0, 0, .5); }
+.ps-screen { position: relative; overflow: hidden; border-radius: 0; background: #141414; padding: 8px; }
 .ps-screen b, .ps-screen span { display: block; background: var(--orange); color: #fff; text-align: center; }
-.ps-screen b { font-family: Archivo, Arial, sans-serif; font-stretch: 125%; font-size: clamp(20px, 2vw, 28px); letter-spacing: .02em; padding: 26px 0 4px; border-radius: 8px 8px 0 0; }
-.ps-screen span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; padding: 0 0 24px; border-radius: 0 0 8px 8px; }
+.ps-screen b { font-family: Archivo, Arial, sans-serif; font-stretch: 125%; font-size: clamp(20px, 2vw, 28px); letter-spacing: .02em; padding: 26px 0 4px; border-radius: 0; }
+.ps-screen span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; padding: 0 0 24px; border-radius: 0; }
 .ps-screen::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 40%, rgba(255, 255, 255, .18) 50%, transparent 60%); transform: translateX(-100%); animation: ps-sheen 4s var(--ease) infinite; }
 @keyframes ps-sheen { 60%, 100% { transform: translateX(100%); } }
 .ps-shift { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-3); }
-.ps-shift i { flex: 1; height: 30px; border-radius: 999px; background: var(--orange); display: grid; place-items: center; }
+.ps-shift i { flex: 1; height: 30px; border-radius: 0; background: var(--orange); display: grid; place-items: center; }
 .ps-shift em { font-style: normal; font-size: 12px; font-weight: 500; color: #fff; }
 
 /* share the screen: stacked brand rows, like a queue */
 .ps-rows { display: grid; gap: 10px; }
-.ps-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 999px; background: #fff; box-shadow: 0 10px 24px -14px rgba(120, 60, 30, .45); translate: calc(var(--i) * 10px) 0; opacity: calc(1 - var(--i) * .18); transition: translate .45s var(--ease); }
+.ps-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 0; background: rgba(255, 255, 255, .07); translate: calc(var(--i) * 10px) 0; opacity: calc(1 - var(--i) * .18); transition: translate .45s var(--ease); }
 .ps-card:hover .ps-row { translate: 0 0; }
 .ps-row i { width: 34px; height: 34px; border-radius: 50%; flex: none; }
 .ps-row b { display: block; font-weight: 500; font-size: 14.5px; }
@@ -63,46 +30,17 @@
 /* event: hours parked as a small bar chart */
 .ps-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 180px; padding-top: 34px; }
 .ps-bar { position: relative; width: 22%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.ps-bar i { width: 100%; height: calc(var(--h) * 130px); border-radius: 12px 12px 6px 6px; background: rgba(232, 98, 44, .28); transform: scaleY(.08); transform-origin: bottom; transition: transform 1s var(--ease) calc(var(--d, 0) * 100ms + .3s); }
+.ps-bar i { width: 100%; height: calc(var(--h) * 130px); border-radius: 0; background: rgba(232, 98, 44, .28); transform: scaleY(.08); transform-origin: bottom; transition: transform 1s var(--ease) calc(var(--d, 0) * 100ms + .3s); }
 .ps-bar.pick i { background: var(--orange); }
 .ps-card[data-in] .ps-bar i { transform: none; }
 .ps-bar span { font-size: 12px; color: var(--ink-3); }
-.ps-bar em { position: absolute; bottom: calc(var(--h) * 130px + 34px); font-style: normal; font-size: 12px; font-weight: 500; white-space: nowrap; background: var(--ink); color: #fff; padding: 5px 12px; border-radius: 999px; }
-.ps-chip { align-self: center; font-size: 12.5px; font-weight: 500; background: #fff; padding: 8px 16px; border-radius: 999px; box-shadow: 0 10px 24px -14px rgba(120, 60, 30, .45); }
+.ps-bar em { position: absolute; bottom: calc(var(--h) * 130px + 34px); font-style: normal; font-size: 12px; font-weight: 500; white-space: nowrap; background: var(--ink); color: var(--bg); padding: 5px 12px; border-radius: 0; }
+.ps-chip { align-self: center; font-size: 12.5px; font-weight: 500; background: rgba(255, 255, 255, .07); padding: 8px 16px; }
 
-.ps-dots { display: none; }
 
-@media (max-width: 1000px) and (min-width: 641px) {
-  .ps-track { grid-template-columns: 1fr 1fr; }
-}
-
-/* phones: curved swipe carousel. Each card rotates about a point far below it by its
-   distance from the centre (--o, set from the scroll position), so cards travel on an arc. */
 @media (max-width: 640px) {
-  .ps-track {
-    display: flex; gap: 6px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
-    padding: 18px 10vw 56px; scrollbar-width: none; /* 10vw + 80vw + 10vw: a card sits dead centre */
-  }
-  .ps-track::-webkit-scrollbar { display: none; }
-  .ps-slot { flex: 0 0 80vw; scroll-snap-align: center; position: relative; z-index: calc(10 - var(--a, 0) * 5); opacity: calc(1 - var(--a, 0) * .35); }
-  .ps .ps-card {
-    padding: 24px;
-    /* pull neighbours inward so they peek in from the edges, then tilt them down along the arc */
-    transform-origin: 50% 190%; transform: translateX(calc(var(--o, 0) * -34vw)) rotate(calc(var(--o, 0) * 8deg));
-    transition: opacity 1s var(--ease); /* no transform transition: it follows the finger */
-  }
-  .ps .ps-card:hover { translate: none; }
-  .ps-art { min-height: 220px; padding: 16px; }
-  /* three ways side by side: icon above its label */
-  .ps-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 360px; }
-  .ps-points li { flex-direction: column; text-align: center; font-size: 13px; gap: 8px; line-height: 1.3; }
-  .ps-note { max-width: 30ch; margin-inline: auto; }
-  .ps-points i { width: 40px; height: 40px; flex: none; }
   .ps-screen b { font-size: 19px; white-space: nowrap; }
-  .ps-row { padding: 10px 12px; gap: 10px; translate: calc(var(--i) * 6px) 0; }
+  .ps-row { padding: 10px 12px; gap: 10px; translate: none; }
+  .ps-row span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .ps-row i { width: 28px; height: 28px; }
-  .ps-row span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 30vw; }
-  .ps-dots { display: flex; justify-content: center; gap: 8px; }
-  .ps-dots button { width: 8px; height: 8px; border-radius: 999px; background: rgba(28, 18, 13, .2); transition: width .3s var(--ease), background .3s; }
-  .ps-dots button[aria-selected="true"] { width: 26px; background: var(--ink); }
 }
