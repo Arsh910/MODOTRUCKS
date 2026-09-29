@@ -1,6 +1,6 @@
 # MODO Screen Truck site
 
-[![Netlify Status](https://netlify.com)](https://app.netlify.com/projects/phenomenal-haupia-280a77/deploys)
+[![Netlify Status](https://netlify.com)](https://netlify.com)
 
 
 React + Vite. No router or UI library: a tiny router in `src/hooks/usePath.js`, plain CSS.
