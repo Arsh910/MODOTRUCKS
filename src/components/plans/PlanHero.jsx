@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ScreenDiagram } from '../screen/ScreenHero.jsx'
 import '../screen/screen.css'
-import { BOOK_LINK, PHONE, PHONE_HREF } from '../../config/site.js'
+import { PageHero } from '../ui/PageHero.jsx'
 import './plan-hero.css'
 
 // What the truck's screen plays on each plan page, and how often it changes (ms).
@@ -41,7 +41,7 @@ function Meter({ id, now, count }) {
   return <div className="pm pm-shift"><span>8 AM</span><div className="pm-bar"><i /></div><span>1 PM</span><b>Only your ad, all shift</b></div>
 }
 
-// Plan page top, in the Screen page's layout: headline + pitch, then the corner screen playing the plan.
+// Plan page top, split like the other pages: headline + pitch on the left, the corner screen playing the plan on the right.
 export function PlanHero({ id, plan }) {
   const { ads, every } = SCREENS[id]
   const [s, setS] = useState({ now: 0, prev: -1 })
@@ -52,24 +52,7 @@ export function PlanHero({ id, plan }) {
   }, [ads.length, every])
 
   return (
-    <section className="warm sh plan-sh">
-      <div className="wrap sh-head">
-        <div>
-          <p className="plan-no" data-reveal>Plan {plan.no} · {plan.name}</p>
-          <h1 data-reveal>{plan.title}</h1>
-        </div>
-        <div className="sh-side">
-          <p data-reveal>{plan.lead}</p>
-          <div className="plan-ctas" data-reveal>
-            <a className="dark-btn" href={BOOK_LINK}>Book this plan</a>
-            <a className="line-btn" href={PHONE_HREF}>Call {PHONE}</a>
-          </div>
-        </div>
-      </div>
-      <div className="sh-art" data-reveal>
-        <ScreenDiagram ads={ads} now={s.now} prev={s.prev} dims={false} truck />
-        <Meter id={id} now={s.now} count={ads.length} />
-      </div>
-    </section>
+    <PageHero label={`Plan ${plan.no} · ${plan.name}`} title={plan.title} lead={plan.lead} cta="Book this plan"
+      art={<div className="sh-art plan-art"><ScreenDiagram ads={ads} now={s.now} prev={s.prev} dims={false} truck /><Meter id={id} now={s.now} count={ads.length} /></div>} />
   )
 }

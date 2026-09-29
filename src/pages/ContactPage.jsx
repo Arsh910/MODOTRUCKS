@@ -5,35 +5,31 @@ import '../components/contact/contact.css'
 export default function ContactPage() {
   return (
     <>
-      {/* details on the left, the form as a card on the right that hangs over the dark band below */}
-      <section className="ct">
-        <div className="wrap ct-grid">
-          <div className="ct-info">
+      {/* split: details on the left half, the form filling the right half */}
+      <section className="split ct">
+        <div className="split-l">
+          <div>
+            <p className="dot-label" data-reveal>Contact</p>
             <h1 data-reveal>Get in touch</h1>
-            <p className="ct-lead" data-reveal>Tell us your dates and the areas you want. We plan the route, make the ad if you need one, and reply the same day.</p>
-            <ul className="ct-list">
-              {CONTACT_ITEMS.map(([icon, label, text, href], i) => (
-                <li key={label} data-reveal style={{ '--d': i }}>
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d={icon} /></svg>
-                  <div>
-                    <small>{label}</small>
-                    <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener">{text}</a>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <p className="split-lead" data-reveal>Tell us your dates and the areas you want. We plan the route, make the ad if you need one, and reply the same day.</p>
           </div>
-          <div className="ct-card" id="enquiry" data-reveal>
-            <h2>Say something</h2>
-            <EnquiryForm />
-          </div>
+          <ul className="rows ct-list">
+            {CONTACT_ITEMS.map(([, label, text, href], i) => (
+              <li key={label} data-reveal style={{ '--d': i }}>
+                <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener"><b>{text}</b><span>{label}</span></a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="split-r ct-form" id="enquiry">
+          <EnquiryForm />
         </div>
       </section>
 
-      <section className="brown plan-details ct-faq">
-        <div className="wrap">
-          <h2 data-reveal>Questions</h2>
-          <div className="plan-faq">{FAQ.map(([q, a]) => <details key={q} data-reveal><summary>{q}</summary><p>{a}</p></details>)}</div>
+      <section className="sec">
+        <div className="wrap list2">
+          <div className="list2-l"><h2 data-reveal>Questions</h2></div>
+          <div className="faq">{FAQ.map(([q, a]) => <details key={q} data-reveal><summary>{q}</summary><p>{a}</p></details>)}</div>
         </div>
       </section>
     </>

@@ -77,7 +77,7 @@ export function EnquiryForm() {
       <ol className="ef-steps" aria-label="Steps">
         {STEPS.map((s, i) => (
           <li key={s} className={i === step ? 'on' : i < step ? 'done' : ''} aria-current={i === step ? 'step' : undefined}>
-            <button type="button" disabled={i > step} onClick={() => go(i)}><i>{i < step ? '✓' : i + 1}</i><span>{s}</span></button>
+            <button type="button" disabled={i > step} onClick={() => go(i)}>{s}</button>
           </li>
         ))}
       </ol>
@@ -153,8 +153,8 @@ export function EnquiryForm() {
       <div className="ef-foot">
         {state === 'error' && <p className="ef-err">That didn’t send. Try again, or call {PHONE}.</p>}
         {step > 0 && <button type="button" className="ef-back" onClick={() => go(step - 1)}>← Back</button>}
-        <button type="submit" className="orange-btn" disabled={state === 'sending'}>
-          {step < STEPS.length - 1 ? 'Next →' : state === 'sending' ? 'Sending…' : 'Send enquiry'}
+        <button type="submit" className="orange-btn ef-next" disabled={state === 'sending'}>
+          {step < STEPS.length - 1 ? `Next ${step + 1}/${STEPS.length}` : state === 'sending' ? 'Sending…' : 'Send enquiry'}
         </button>
       </div>
     </form>

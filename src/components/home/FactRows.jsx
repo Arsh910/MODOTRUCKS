@@ -1,18 +1,17 @@
-import { FACTS, FACT_ART } from '../../data/home.jsx'
+import { FACTS } from '../../data/home.jsx'
+import { CountUp } from '../motion/CountUp.jsx'
 
-// The case for the truck in four numbers, as zig-zag rows.
+// The case for the truck in four numbers: label on top, the figure in the middle, index at the bottom.
 export function FactRows() {
   return (
-      <div className="facts-z">
-        {FACTS.map((f, i) => (
-          <div key={f.v} className={`fz ${i % 2 ? 'flip' : ''}`} data-reveal>
-            <div className="fz-num"><span>{f.l}</span><b>{f.v}</b></div>
-            <div className="fz-more">
-              <p>{f.d}</p>
-              <svg viewBox="0 0 100 100" aria-hidden="true">{FACT_ART[f.art]}</svg>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div className="ncards lite facts" style={{ '--n': 4 }}>
+      {FACTS.map((f, i) => (
+        <div key={f.v} className="ncard" data-reveal style={{ '--d': i }}>
+          <span className="dot-label">{f.l}</span>
+          <div className="ncard-mid"><b className="big"><CountUp value={f.v} /></b><p>{f.d}</p></div>
+          <small>{String(i + 1).padStart(2, '0')}</small>
+        </div>
+      ))}
+    </div>
   )
 }

@@ -1,5 +1,8 @@
 # MODO Screen Truck site
 
+[![Netlify Status](https://netlify.com)](https://netlify.com)
+
+
 React + Vite. No router or UI library: a tiny router in `src/hooks/usePath.js`, plain CSS.
 
 ```
