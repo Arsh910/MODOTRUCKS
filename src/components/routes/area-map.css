@@ -1,19 +1,25 @@
 /* Routes: the map on the left, the cities as rows on the right. The active city's pin pulses. */
-.am { display: grid; grid-template-columns: 1.6fr 1fr; gap: 12px clamp(24px, 4vw, 64px); align-items: start; }
-.map { position: relative; margin: 0; overflow: hidden; background: var(--panel-2); }
-.map img { width: 100%; height: auto; filter: grayscale(1) invert(.92) contrast(.9); opacity: .85; }
-.map figcaption { position: absolute; right: 8px; bottom: 6px; font-size: 11px; color: var(--ink-2); }
+.am { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px clamp(24px, 3vw, 48px); align-items: start; margin-top: clamp(32px, 4vw, 48px); }
+.map { position: relative; margin: 0; overflow: hidden; border-radius: var(--r); background: var(--bg-2); }
+.map img { width: 100%; height: auto; filter: grayscale(1) invert(.9) contrast(.85); }
+.map figcaption { position: absolute; right: 12px; bottom: 8px; font-size: 11px; color: var(--ink-2); }
 .pin { position: absolute; width: 0; height: 0; padding: 0; }
-.pin i { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: var(--orange); border: 3px solid var(--bg); transition: transform .4s var(--ease); }
-.pin i::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--orange); opacity: 0; }
-.pin span { position: absolute; left: 50%; bottom: 14px; translate: -50% 0; white-space: nowrap; padding: 5px 11px; background: var(--ink); color: var(--bg); font-size: 12.5px; font-weight: 500; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .4s var(--ease); pointer-events: none; }
+.pin i { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: var(--ink); border: 3px solid var(--lime); transition: transform .4s var(--ease); }
+.pin i::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--ink); opacity: 0; }
+.pin span { position: absolute; left: 50%; bottom: 14px; translate: -50% 0; white-space: nowrap; padding: 5px 11px; background: var(--ink); color: var(--bg); font-size: 12.5px; font-weight: 500; border-radius: 99px; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .4s var(--ease); pointer-events: none; }
 .pin.on i { transform: scale(1.5); }
 .pin.on i::after { animation: pin-pulse 1.8s ease-out infinite; }
 .pin.on span { opacity: 1; transform: none; }
 @keyframes pin-pulse { from { opacity: .8; transform: scale(1); } to { opacity: 0; transform: scale(3.2); } }
 .cities li { cursor: pointer; }
 .cities li.on { padding-left: 14px; }
-.cities li.on b { color: var(--orange); }
+.cities li.on b { color: var(--ink); }
+.cities li { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 16px 0; border-bottom: 1px solid var(--line); transition: padding .4s var(--ease), opacity .3s; }
+.cities li:first-child { border-top: 1px solid var(--line); }
+.cities li:not(.on) { opacity: .45; }
+.cities b { font-weight: 400; font-size: clamp(22px, 2vw, 30px); letter-spacing: -.04em; }
+.cities span { font-size: 13px; color: var(--ink-3); }
+.cities p { grid-column: 1 / -1; font-size: 14.5px; color: var(--ink-2); }
 
 @media (max-width: 900px) { .am { grid-template-columns: 1fr; } }
 @media (max-width: 640px) {

@@ -1,41 +1,39 @@
 /* Plans: the small drawings of how each plan uses the screen (inside the plan panels). */
 .ps-art { display: flex; flex-direction: column; justify-content: center; gap: 18px; }
-.ps-ways { margin-top: 28px; max-width: 520px; }
-.shifts-pic { width: min(100%, 420px); margin-top: 36px; }
 
 /* whole screen: a mini truck screen and the shift bar */
-.ps-screen { position: relative; overflow: hidden; border-radius: 0; background: #141414; padding: 8px; }
+.ps-screen { position: relative; overflow: hidden; border-radius: 14px; background: #141414; padding: 8px; }
 .ps-screen b, .ps-screen span { display: block; background: var(--orange); color: #fff; text-align: center; }
-.ps-screen b { font-family: Archivo, Arial, sans-serif; font-stretch: 125%; font-size: clamp(20px, 2vw, 28px); letter-spacing: .02em; padding: 26px 0 4px; border-radius: 0; }
-.ps-screen span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; padding: 0 0 24px; border-radius: 0; }
+.ps-screen b { font-family: Archivo, Arial, sans-serif; font-stretch: 125%; font-size: clamp(20px, 2vw, 28px); letter-spacing: .02em; padding: 26px 0 4px; border-radius: 10px 10px 0 0; }
+.ps-screen span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; padding: 0 0 24px; border-radius: 0 0 10px 10px; }
 .ps-screen::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 40%, rgba(255, 255, 255, .18) 50%, transparent 60%); transform: translateX(-100%); animation: ps-sheen 4s var(--ease) infinite; }
 @keyframes ps-sheen { 60%, 100% { transform: translateX(100%); } }
 .ps-shift { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-3); }
-.ps-shift i { flex: 1; height: 30px; border-radius: 0; background: var(--orange); display: grid; place-items: center; }
+.ps-shift i { flex: 1; height: 30px; border-radius: 14px; background: var(--orange); display: grid; place-items: center; }
 .ps-shift em { font-style: normal; font-size: 12px; font-weight: 500; color: #fff; }
 
 /* share the screen: stacked brand rows, like a queue */
 .ps-rows { display: grid; gap: 10px; }
-.ps-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 0; background: rgba(255, 255, 255, .07); translate: calc(var(--i) * 10px) 0; opacity: calc(1 - var(--i) * .18); transition: translate .45s var(--ease); }
-.ps-card:hover .ps-row { translate: 0 0; }
+.ps-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 14px; background: #fff; translate: calc(var(--i) * 10px) 0; opacity: calc(1 - var(--i) * .18); transition: translate .45s var(--ease); }
+.stack-card:hover .ps-row { translate: 0 0; }
 .ps-row i { width: 34px; height: 34px; border-radius: 50%; flex: none; }
 .ps-row b { display: block; font-weight: 500; font-size: 14.5px; }
 .ps-row span { font-size: 12px; color: var(--ink-3); }
 .ps-row em { margin-left: auto; font-style: normal; font-size: 22px; color: var(--ink-3); }
 .ps-pips { display: flex; align-items: center; gap: 6px; }
-.ps-pips i { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--orange); }
-.ps-pips i.on { background: var(--orange); }
+.ps-pips i { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--ink); }
+.ps-pips i.on { background: var(--ink); }
 .ps-pips span { font-size: 12px; color: var(--ink-2); margin-left: 6px; }
 
 /* event: hours parked as a small bar chart */
 .ps-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 180px; padding-top: 34px; }
 .ps-bar { position: relative; width: 22%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.ps-bar i { width: 100%; height: calc(var(--h) * 130px); border-radius: 0; background: rgba(232, 98, 44, .28); transform: scaleY(.08); transform-origin: bottom; transition: transform 1s var(--ease) calc(var(--d, 0) * 100ms + .3s); }
-.ps-bar.pick i { background: var(--orange); }
-.ps-card[data-in] .ps-bar i { transform: none; }
+.ps-bar i { width: 100%; height: calc(var(--h) * 130px); border-radius: 14px; background: rgba(22, 23, 22, .14); transform: scaleY(.08); transform-origin: bottom; transition: transform 1s var(--ease) calc(var(--d, 0) * 100ms + .3s); }
+.ps-bar.pick i { background: var(--ink); }
+.ps-card[data-in] .ps-bar i, .stack-card .ps-bar i { transform: none; }
 .ps-bar span { font-size: 12px; color: var(--ink-3); }
-.ps-bar em { position: absolute; bottom: calc(var(--h) * 130px + 34px); font-style: normal; font-size: 12px; font-weight: 500; white-space: nowrap; background: var(--ink); color: var(--bg); padding: 5px 12px; border-radius: 0; }
-.ps-chip { align-self: center; font-size: 12.5px; font-weight: 500; background: rgba(255, 255, 255, .07); padding: 8px 16px; }
+.ps-bar em { position: absolute; bottom: calc(var(--h) * 130px + 34px); font-style: normal; font-size: 12px; font-weight: 500; white-space: nowrap; background: var(--ink); color: var(--bg); padding: 5px 12px; border-radius: 14px; }
+.ps-chip { align-self: center; font-size: 12.5px; font-weight: 500; background: #fff; padding: 8px 16px; border-radius: 99px; }
 
 
 @media (max-width: 640px) {

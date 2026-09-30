@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import './screen.css'
-import { PageHero } from '../ui/PageHero.jsx'
 
 // Example ads for made-up brands. Each one fills the whole 700 x 300 strip, so it wraps the corner.
 const ADS = [
@@ -120,16 +119,13 @@ export function ScreenDiagram({ now, prev, ads = ADS, dims = true, truck = false
   )
 }
 
-export function ScreenHero() {
+// The drawing with its example ads changing every few seconds (Screen page top).
+export function ScreenShow() {
   const [ad, setAd] = useState({ now: 0, prev: -1 })
   useEffect(() => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const t = setInterval(() => !document.hidden && setAd(a => ({ now: (a.now + 1) % ADS.length, prev: a.now })), 3500)
     return () => clearInterval(t)
   }, [])
-  return (
-    <PageHero label="The Screen" title="One screen, wrapped around the corner"
-      lead="The back and the side of the truck are a single LED screen with no gap between them. Your ad flows round the corner in one piece."
-      art={<div className="sh-art"><ScreenDiagram now={ad.now} prev={ad.prev} /></div>} />
-  )
+  return <div className="sh-art"><ScreenDiagram now={ad.now} prev={ad.prev} /></div>
 }

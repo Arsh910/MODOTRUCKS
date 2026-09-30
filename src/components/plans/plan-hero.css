@@ -1,15 +1,14 @@
 /* Plan page top: the readout under the screen drawing. */
-/* meter under the screen */
 .pm { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 14px auto 0; width: min(560px, 100%); font-size: 13px; color: var(--ink-2); flex-wrap: wrap; }
 .pm b { font-weight: 500; color: var(--ink); }
-.pm-bar { flex: 1; min-width: 120px; height: 8px; border-radius: 0; background: rgba(255, 255, 255, .1); overflow: hidden; }
-.pm-bar i { display: block; height: 100%; background: var(--orange); transform-origin: left; animation: pm-fill 6s linear infinite; }
+.pm-bar { flex: 1; min-width: 120px; height: 8px; border-radius: 99px; background: rgba(22, 23, 22, .1); overflow: hidden; }
+.pm-bar i { display: block; height: 100%; background: var(--ink); transform-origin: left; animation: pm-fill 6s linear infinite; }
 @keyframes pm-fill { from { transform: scaleX(0); } }
 .pm-shift b, .pm-loop span { flex-basis: 100%; text-align: center; }
-.pm-loop i { display: grid; place-items: center; width: 44px; height: 32px; border-radius: 0; font-style: normal; font-size: 12px; background: var(--panel-2); border: 1px solid rgba(255, 255, 255, .1); color: var(--ink-3); transition: background .3s, color .3s, transform .3s var(--ease), border-color .3s; }
+.pm-loop i { display: grid; place-items: center; width: 44px; height: 32px; border-radius: 99px; font-style: normal; font-size: 12px; background: rgba(255, 255, 255, .7); color: var(--ink-3); transition: background .3s, color .3s, transform .3s var(--ease); }
 .pm-loop i.you { width: 52px; }
-.pm-loop i.on { background: var(--ink); border-color: var(--ink); color: var(--bg); transform: translateY(-3px); }
-.pm-loop i.you.on { background: var(--orange); border-color: var(--orange); }
+.pm-loop i.on { background: var(--ink); color: #fff; transform: translateY(-3px); }
+.pm-loop i.you.on { background: var(--lime); color: var(--ink); }
 
 @media (max-width: 640px) {
   .pm { gap: 8px; }

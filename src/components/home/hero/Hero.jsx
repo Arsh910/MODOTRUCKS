@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { City, Lamps } from './City.jsx'
 import { Truck, ADS } from './Truck.jsx'
 import { Crowd, NEAR_PEOPLE, FAR_PEOPLE } from './Crowd.jsx'
-import { BOOK_LINK, AD_LINK } from '../../../config/site.js'
 import './hero.css'
 
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -46,12 +45,14 @@ function useActive(ref) {
   return seen && shown
 }
 
-export default function Hero() {
+// The street scene. The landing page uses it full screen; plan cards use a small copy with that plan's ads
+// (`ads`, changing every `every` ms). `parked` stops the truck at the kerb, for the event plan.
+export default function Hero({ children, ads: list = ADS, every = AD_EVERY, parked = false, id }) {
   const ref = useRef(null)
   const active = useActive(ref)
   const [ads, setAds] = useState({ now: 0, prev: -1 })
   const [sky, setSky] = useState({ day: false, swaps: 0 })
-  useEvery(AD_EVERY, () => setAds(a => ({ now: (a.now + 1) % ADS.length, prev: a.now })), active)
+  useEvery(every, () => setAds(a => ({ now: (a.now + 1) % list.length, prev: a.now })), active)
   useEvery(SKY_EVERY, () => setSky(s => ({ day: !s.day, swaps: s.swaps + 1 })), active, SKY_FIRST)
 
   // Sun and moon each ride an arm pivoting at the horizon. On a swap one rises from the left
@@ -60,7 +61,7 @@ export default function Hero() {
   const moon = sky.day ? 'set' : sky.swaps ? 'rise' : ''
 
   return (
-    <section ref={ref} id="top" className={active ? 'hero' : 'hero paused'} data-time={sky.day ? 'day' : 'night'} style={{ '--spring': SPRING }}>
+    <section ref={ref} id={id} className={`hero ${active ? '' : 'paused'} ${parked ? 'parked' : ''}`} data-time={sky.day ? 'day' : 'night'} style={{ '--spring': SPRING }}>
       <div className="sky" aria-hidden="true">
         <i className="sky-day" />
         {sky.swaps > 0 && <i key={sky.swaps} className="sky-dusk" />}
@@ -71,21 +72,14 @@ export default function Hero() {
       <Lamps />
       <div className="road" aria-hidden="true">
         <i className="far-walk" />
-        <i className="glow" style={{ '--glow': ADS[ads.now].glow }} />
+        <i className="glow" style={{ '--glow': list[ads.now].glow ?? list[ads.now].bg }} />
         <i className="dash" />
       </div>
       <Crowd people={FAR_PEOPLE} far />
       <div className="pavement" aria-hidden="true" />
-      <Truck ad={ads.now} prev={ads.prev} />
+      <Truck ad={ads.now} prev={ads.prev} ads={list} />
       <Crowd people={NEAR_PEOPLE} />
-      <div className="hero-cap">
-        <h1>Nobody scrolls past a truck.</h1>
-        <p>A 3D LED screen that drives your brand through Chandigarh, Mohali, Zirakpur and Panchkula.</p>
-        <div className="hero-btns">
-          <a className="nav-btn hero-btn" href={BOOK_LINK}>Book Now</a>
-          <a className="hero-ghost" href={AD_LINK}>Don’t have an ad?</a>
-        </div>
-      </div>
+      {children}
     </section>
   )
 }

@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import { ScreenDiagram } from '../screen/ScreenHero.jsx'
 import '../screen/screen.css'
-import { PageHero } from '../ui/PageHero.jsx'
 import './plan-hero.css'
 
 // What the truck's screen plays on each plan page, and how often it changes (ms).
 const YOU = { bg: '#E8622C', fa: '#fff', fb: '#fff' }
-const SCREENS = {
+export const SCREENS = {
   whole: { every: 3200, ads: [
     { ...YOU, a: 'YOUR BRAND', b: 'ALL SHIFT · NONSTOP' },
     { ...YOU, a: 'YOUR OFFER', b: 'ONLY YOUR ADS ON SCREEN' },
@@ -41,8 +40,8 @@ function Meter({ id, now, count }) {
   return <div className="pm pm-shift"><span>8 AM</span><div className="pm-bar"><i /></div><span>1 PM</span><b>Only your ad, all shift</b></div>
 }
 
-// Plan page top, split like the other pages: headline + pitch on the left, the corner screen playing the plan on the right.
-export function PlanHero({ id, plan }) {
+// The corner screen playing a plan's ads, with the readout under it (plan page top).
+export function PlanShow({ id }) {
   const { ads, every } = SCREENS[id]
   const [s, setS] = useState({ now: 0, prev: -1 })
   useEffect(() => {
@@ -50,9 +49,10 @@ export function PlanHero({ id, plan }) {
     const t = setInterval(() => { if (!document.hidden) setS(x => ({ now: (x.now + 1) % ads.length, prev: x.now })) }, every)
     return () => clearInterval(t)
   }, [ads.length, every])
-
   return (
-    <PageHero label={`Plan ${plan.no} · ${plan.name}`} title={plan.title} lead={plan.lead} cta="Book this plan"
-      art={<div className="sh-art plan-art"><ScreenDiagram ads={ads} now={s.now} prev={s.prev} dims={false} truck /><Meter id={id} now={s.now} count={ads.length} /></div>} />
+    <div className="sh-art plan-art">
+      <ScreenDiagram ads={ads} now={s.now} prev={s.prev} dims={false} truck />
+      <Meter id={id} now={s.now} count={ads.length} />
+    </div>
   )
 }

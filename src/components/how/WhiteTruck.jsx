@@ -1,8 +1,6 @@
-import { STEPS } from '../../data/how.js'
-import { BOOK_LINK, AD_LINK } from '../../config/site.js'
 
 // Clean white small truck, side profile, facing left.
-function WhiteTruck() {
+export function WhiteTruck() {
   const wheel = x => (
     <g transform={`translate(${x},316)`}>
       <path d="M-56,0 A56,56 0 0 1 56,0 Z" fill="#26282b" />
@@ -53,34 +51,5 @@ function WhiteTruck() {
 
       {wheel(172)}{wheel(704)}
     </svg>
-  )
-}
-
-export function HowSteps() {
-  return (
-    <section className="sec how" id="how">
-      <div className="wrap">
-        <div className="sec-head">
-          <h2 className="sec-title" data-reveal>Four steps to put your ad on the road</h2>
-          <div>
-            <p data-reveal>Pick a plan and your dates, send your ad, and the truck does the rest. Most requests are confirmed the same day.</p>
-            <div className="btns" data-reveal>
-              <a className="orange-btn" href={BOOK_LINK}>Book Now</a>
-              <a className="box-btn" href={AD_LINK}>Don’t have an ad?</a>
-            </div>
-          </div>
-        </div>
-        <div className="how-stage"><div className="how-truck" data-reveal><WhiteTruck /></div></div>
-        <ol className="ncards stack how-steps" style={{ '--n': 4 }}>
-          {STEPS.map(([h, p], i) => (
-            <li key={h} className="ncard" data-reveal style={{ '--d': i }}>
-              <span className="dot-label">Step {i + 1}</span>
-              <div className="ncard-mid"><h3>{h}</h3><p>{p}</p></div>
-              <small>{String(i + 1).padStart(2, '0')}</small>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
   )
 }

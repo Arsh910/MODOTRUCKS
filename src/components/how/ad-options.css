@@ -1,7 +1,0 @@
-/* "Your ad": three option panels, then the perks */
-.ao-panels { list-style: none; }
-.ao-rows { width: 100%; }
-.ao-rows b { font-size: clamp(18px, 1.5vw, 22px); }
-.ao-rows span { font-size: clamp(16px, 1.3vw, 19px); color: var(--orange); }
-.ao-d { margin-top: 14px; }
-.ao-perks { list-style: none; margin-top: 12px; }
