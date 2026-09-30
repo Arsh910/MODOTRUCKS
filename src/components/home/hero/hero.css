@@ -141,3 +141,12 @@
 /* small copies of the scene inside plan cards */
 .scene-card { position: relative; overflow: hidden; border-radius: var(--r); }
 .scene-card .hero { position: absolute; inset: 0; height: 100%; min-height: 0; border-radius: inherit; }
+
+/* landing page only: a smaller sun and moon set low, between the headline and the truck, so they read as far away */
+.hero-full .orbit { --arc: .43; }
+.hero-full .sun { width: clamp(30px, 3cqw, 52px); box-shadow: 0 0 26px 8px rgba(255, 214, 120, .45), 0 0 90px 40px rgba(255, 200, 110, .16); }
+.hero-full .moon { width: clamp(24px, 2.4cqw, 42px); }
+@media (max-width: 640px) {
+  .hero-full .orbit { --arc: .44; }
+  .hero-full .sun { width: 30px; } .hero-full .moon { width: 24px; }
+}
