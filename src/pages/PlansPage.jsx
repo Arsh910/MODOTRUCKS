@@ -1,4 +1,4 @@
-import { Top, Row, Caps, Stack, StackCard, Faq, Talk } from '../components/mc/Blocks.jsx'
+import { Top, Row, Caps, Stack, StackCard, Faq, Talk, AskUs } from '../components/mc/Blocks.jsx'
 import { PlanScene } from '../components/plans/PlanScene.jsx'
 import { PLANS, SHIFTS } from '../data/plans.js'
 import '../components/plans/plans.css'
@@ -10,9 +10,7 @@ export default function PlansPage() {
       <Top title="Three ways to use the screen." sub="Every booking ends with a proof report: GPS route, photos and video."
         media={<div className="top-card"><img src="/img/bg-interchange.jpg" alt="" /><p className="corner l">Plans</p><p className="corner r">Whole screen · Shared · At your event</p></div>} />
 
-      <Row n={1} label="The schedule" title="Two shifts a day, Tuesday to Sunday." lead="Every plan runs on this schedule. Pick the morning rush, the evening glow, or both, and we plan the route around those hours.">
-        <Caps n={2} items={SHIFTS.map(([time, t, d]) => [t, d, time])} />
-      </Row>
+      <Row n={1} label="The schedule" title="Two shifts a day, Tuesday to Sunday." lead="Every plan runs on this schedule. Pick the morning rush, the evening glow, or both, and we plan the route around those hours." wide={<Caps n={4} items={SHIFTS.map(([time, t, d]) => [t, d, time])} />} />
 
       <section id="plans">
         <Stack title="Pick your plan" sub="One truck, three ways to put your brand on it.">
@@ -26,7 +24,7 @@ export default function PlansPage() {
         </Stack>
       </section>
 
-      <div className="dark"><Row n={2} label="FAQ"><Faq items={faq} /></Row></div>
+      <div className="dark"><Row n={2} label="Questions" aside={<AskUs />}><Faq items={faq} /></Row></div>
     </>
   )
 }

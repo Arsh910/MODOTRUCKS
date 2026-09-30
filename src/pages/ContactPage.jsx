@@ -1,4 +1,4 @@
-import { Row, Faq } from '../components/mc/Blocks.jsx'
+import { Row, Faq, AskUs } from '../components/mc/Blocks.jsx'
 import { EnquiryForm } from '../components/contact/EnquiryForm.jsx'
 import { CONTACT_ITEMS, FAQ } from '../data/contact.js'
 import '../components/contact/contact.css'
@@ -21,7 +21,7 @@ export default function ContactPage() {
         <div className="ct-card" id="enquiry" data-reveal><EnquiryForm /></div>
       </section>
 
-      <div className="dark"><Row n={1} label="FAQ"><Faq items={FAQ} /></Row></div>
+      <div className="dark"><Row n={1} label="Questions" aside={<AskUs />}><Faq items={FAQ} /></Row></div>
     </>
   )
 }
