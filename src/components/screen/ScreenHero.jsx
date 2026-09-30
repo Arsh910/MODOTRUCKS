@@ -120,12 +120,13 @@ export function ScreenDiagram({ now, prev, ads = ADS, dims = true, truck = false
 }
 
 // The drawing with its example ads changing every few seconds (Screen page top).
-export function ScreenShow() {
+// `truck` draws the whole truck around the screen instead of the measured screen on its own.
+export function ScreenShow({ truck = false }) {
   const [ad, setAd] = useState({ now: 0, prev: -1 })
   useEffect(() => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const t = setInterval(() => !document.hidden && setAd(a => ({ now: (a.now + 1) % ADS.length, prev: a.now })), 3500)
     return () => clearInterval(t)
   }, [])
-  return <div className="sh-art"><ScreenDiagram now={ad.now} prev={ad.prev} /></div>
+  return <div className="sh-art"><ScreenDiagram now={ad.now} prev={ad.prev} dims={!truck} truck={truck} /></div>
 }

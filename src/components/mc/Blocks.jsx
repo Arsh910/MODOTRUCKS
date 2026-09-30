@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { BOOK_LINK, AD_LINK } from '../../config/site.js'
+import { BOOK_LINK, AD_LINK, PHONE, PHONE_HREF } from '../../config/site.js'
 
 // Shared page blocks, after missioncontrol.co.
 
@@ -28,12 +28,13 @@ export function Top({ title, sub, children, media, buttons = true }) {
 
 // A numbered section: small label on the left third, content on the right.
 // `aside` fills the left column under the label (a picture or drawing).
-export function Row({ n, label, title, lead, cols, link, children, id, aside }) {
+// `wide` runs the full width under the heading (grids of cards, the map).
+export function Row({ n, label, title, lead, cols, link, children, id, aside, wide }) {
   return (
     <section className="sec" id={id}>
       <div className="wrap row">
         <div className="row-side">
-          <p className="label" data-reveal><i>{n}</i>{label}</p>
+          <p className="label" data-reveal>{label}</p>
           {aside && <div className="row-aside" data-reveal="media">{aside}</div>}
         </div>
         <div className="row-body">
@@ -44,6 +45,7 @@ export function Row({ n, label, title, lead, cols, link, children, id, aside }) 
           {children}
         </div>
       </div>
+      {wide && <div className="wrap row-wide">{wide}</div>}
     </section>
   )
 }
@@ -145,6 +147,16 @@ export function StackCard({ i, tag, title, text, right, children }) {
       </div>
       <div className="stack-r">{right}</div>
     </article>
+  )
+}
+
+// Left side of an FAQ: a nudge to just ask.
+export function AskUs() {
+  return (
+    <div className="ask">
+      <p>Still have a question? We reply the same day.</p>
+      <Talk href={PHONE_HREF} tone="lime">Call {PHONE}</Talk>
+    </div>
   )
 }
 

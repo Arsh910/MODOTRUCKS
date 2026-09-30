@@ -1,4 +1,4 @@
-import { Top, Row, Caps, Rail, Faq, Talk } from '../components/mc/Blocks.jsx'
+import { Top, Row, Caps, Rail, Faq, Talk, AskUs } from '../components/mc/Blocks.jsx'
 import { PlanShow } from '../components/plans/PlanHero.jsx'
 import { PlanDiagram } from '../components/plans/PlanDiagram.jsx'
 import { PLANS } from '../data/plans.js'
@@ -24,15 +24,11 @@ export default function PlanDetailPage({ id }) {
 
       <Rail title="On the road" sub="What this plan looks like out in the Tricity." cards={p.gallery.map(([img, title, text]) => ({ img, title, text }))} />
 
-      <Row n={2} label="The details" title="Everything you need to know before you book.">
-        <Caps n={2} items={p.details.map(([k, v]) => [v, '', k])} />
-      </Row>
+      <Row n={2} label="The details" title="Everything you need to know before you book." wide={<Caps n={3} items={p.details.map(([k, v]) => [v, '', k])} />} />
 
       <div className="dark">
-        <Row n={3} label="FAQ"><Faq items={p.faq} /></Row>
-        <Row n={4} label="Other plans" title="Other ways to use the screen.">
-          <PlanPics items={others} />
-        </Row>
+        <Row n={3} label="Questions" aside={<AskUs />}><Faq items={p.faq} /></Row>
+        <Row n={4} label="Other plans" title="Other ways to use the screen." wide={<PlanPics items={others} />} />
       </div>
     </>
   )
