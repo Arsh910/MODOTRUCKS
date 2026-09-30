@@ -5,7 +5,7 @@
 @property --glow { syntax: '<color>'; inherits: false; initial-value: #E8622C; }
 @property --win { syntax: '<number>'; inherits: true; initial-value: .6; }
 
-.hero { --hz: 29%; position: relative; height: 100svh; min-height: 600px; overflow: hidden; background: #050506; color: #fff; }
+.hero { --hz: 29%; container-type: inline-size; position: relative; height: 100svh; min-height: 600px; overflow: hidden; border-radius: var(--r); isolation: isolate; background: #050506; color: #fff; }
 .hero.paused, .hero.paused *, .hero.paused *::before, .hero.paused *::after { animation-play-state: paused !important; }
 
 /* ---------- sky ---------- */
@@ -17,7 +17,7 @@
     radial-gradient(1.3px 1.3px at 78% 14%, #fff, transparent), radial-gradient(1px 1px at 89% 33%, #fff, transparent), radial-gradient(1.1px 1.1px at 95% 8%, #fff, transparent);
 }
 .sky::after { /* horizon glow */
-  content: ""; position: absolute; left: 50%; top: 58%; width: 90vw; height: 30vh; transform: translate(-50%, -50%);
+  content: ""; position: absolute; left: 50%; top: 58%; width: 90cqw; height: 30vh; transform: translate(-50%, -50%);
   background: radial-gradient(closest-side, rgba(255, 255, 255, .07), transparent);
 }
 .sky-day, .sky-dusk { position: absolute; inset: 0; opacity: 0; }
@@ -35,9 +35,9 @@
 @keyframes rise-arc { from { transform: rotate(-100deg); } to { transform: rotate(0deg); } }
 @keyframes set-arc { from { transform: rotate(0deg); } to { transform: rotate(100deg); } }
 .sun, .moon { position: absolute; left: 0; top: 0; aspect-ratio: 1; border-radius: 50%; transform: translate(-50%, -50%); }
-.sun { width: clamp(58px, 6vw, 96px); background: radial-gradient(circle at 45% 45%, #fffbe8, #ffe08a 60%, #ffc55a); box-shadow: 0 0 40px 14px rgba(255, 214, 120, .45), 0 0 160px 70px rgba(255, 200, 110, .18); }
+.sun { width: clamp(58px, 6cqw, 96px); background: radial-gradient(circle at 45% 45%, #fffbe8, #ffe08a 60%, #ffc55a); box-shadow: 0 0 40px 14px rgba(255, 214, 120, .45), 0 0 160px 70px rgba(255, 200, 110, .18); }
 .moon {
-  width: clamp(44px, 4.6vw, 76px);
+  width: clamp(44px, 4.6cqw, 76px);
   background: radial-gradient(circle at 34% 40%, rgba(0, 0, 0, .07) 0 9%, transparent 10%), radial-gradient(circle at 62% 64%, rgba(0, 0, 0, .06) 0 13%, transparent 14%),
     radial-gradient(circle at 66% 30%, rgba(0, 0, 0, .05) 0 6%, transparent 7%), radial-gradient(circle at 38% 36%, #fffef8, #ece8de 62%, #d3cfc6);
   box-shadow: 0 0 30px 6px rgba(255, 255, 255, .16), 0 0 140px 50px rgba(255, 255, 255, .06);
@@ -59,7 +59,7 @@
 .road { position: absolute; left: 0; right: 0; bottom: 0; height: var(--hz); background: #0a0a0b; border-top: 3px solid #1c1c20; transition: background-color .9s; }
 .road .far-walk { position: absolute; left: 0; right: 0; top: 0; height: 7%; background: #141417; border-bottom: 1px solid #222227; transition: background-color .9s; }
 .road .glow { /* the screen's colour spilling onto the road; fades to each new ad's colour */
-  position: absolute; left: 50%; top: -6%; width: min(760px, 70vw); height: 70%; transform: translateX(-36%); opacity: .38;
+  position: absolute; left: 50%; top: -6%; width: min(760px, 70cqw); height: 70%; transform: translateX(-36%); opacity: .38;
   background: radial-gradient(closest-side, var(--glow), transparent); transition: --glow 1s ease-in-out;
 }
 .road .dash { /* centre line: one dash period wider than the road, slid by one period */
@@ -71,7 +71,7 @@
 .pavement { position: absolute; left: 0; right: 0; bottom: 0; height: 8%; z-index: 1; background: #060607; border-top: 2px solid #1a1a1d; transition: background-color .9s; }
 
 /* ---------- truck ---------- */
-.truck-wrap { --from: 110vw; --wheel: 9.78%; --wheel-y: 81.03%; position: absolute; z-index: 1; left: 50%; bottom: 9.5%; width: min(1060px, 74vw); transform: translateX(-50%); animation: drive-in 2.4s var(--ease) both; }
+.truck-wrap { --from: 110cqw; --wheel: 9.78%; --wheel-y: 81.03%; position: absolute; z-index: 1; left: 50%; bottom: 9.5%; width: min(1060px, 74cqw); transform: translateX(-50%); animation: drive-in 2.4s var(--ease) both; }
 @keyframes drive-in { from { transform: translateX(var(--from)); } }
 .rig { transform-origin: 50% 92.3%; animation: bob .45s ease-in-out infinite alternate; } /* origin = road level */
 @keyframes bob { to { transform: translateY(1.5px); } }
@@ -105,17 +105,6 @@
   94%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
 }
 
-/* ---------- headline ---------- */
-.hero-cap { position: absolute; left: 0; right: 0; top: calc(96px + 5vh); z-index: 3; padding-inline: var(--gut); text-shadow: 0 2px 20px rgba(0, 0, 0, .5); }
-.hero-cap h1 { font-size: clamp(44px, 7.4vw, 128px); line-height: .92; max-width: 11ch; animation: hero-line 1.2s 1s var(--ease) both; }
-.hero-cap p { font-size: clamp(15px, 1.2vw, 18px); color: rgba(255, 255, 255, .72); margin-top: 20px; max-width: 40ch; animation: rise 1s 1.3s var(--ease) both; }
-@keyframes hero-line { from { transform: translateY(.4em); clip-path: inset(0 0 100% 0); } to { clip-path: inset(-.2em -.2em -.3em -.2em); } }
-.hero-btns { display: flex; flex-wrap: wrap; gap: 0; margin-top: 28px; animation: rise 1s 1.45s var(--ease) both; }
-.hero-btn { text-shadow: none; }
-.hero-btns a { display: inline-grid; place-items: center; height: 50px; padding: 0 28px; margin: 0; font-size: 15px; font-weight: 500; line-height: 1; }
-.hero-ghost { background: var(--panel-2); color: var(--ink); text-shadow: none; transition: background .25s, color .25s; }
-.hero-ghost:hover { background: var(--ink); color: var(--bg); }
-
 /* ---------- daytime ---------- */
 .hero[data-time="day"] .sky-day { opacity: 1; }
 .hero[data-time="day"] .sky::before { opacity: 0; }
@@ -135,15 +124,20 @@
   .orbit { --arc: .7; } /* overhead sits just above the headline */
   .pan.far { height: 45%; } .pan.mid { height: 33%; } .pan.near { height: 16%; } .pan.lamps { height: 22%; }
   .road .dash { --p: 120px; top: 41%; height: 3px; background: repeating-linear-gradient(90deg, rgba(246, 217, 196, .5) 0 46px, transparent 46px var(--p)); animation-duration: .375s; }
-  .hero-cap { top: 88px; }
-  .hero-cap h1 { font-size: 13vw; }
-  .hero-btns a { height: 46px; padding: 0 20px; font-size: 14px; }
   /* the truck is width-limited on a phone, so stretch the body 15% taller from road level;
      wheels grow 15% (staying round) and move up to sit in the taller arches */
-  .truck-wrap { --from: 150vw; --wheel: 11.24%; --wheel-y: 79.33%; width: 98vw; bottom: 8.8%; }
+  .truck-wrap { --from: 150cqw; --wheel: 11.24%; --wheel-y: 79.33%; width: 90cqw; bottom: 8.8%; }
   .rig { scale: 1 1.15; }
   .person { height: calc(19% * var(--s)); }
   .crowd:not(.far) .person:is(:nth-child(2), :nth-child(5), :nth-child(6)) { display: none; }
   .crowd.far .person { height: calc(8% * var(--s)); }
   .crowd.far .person:nth-child(even) { display: none; }
 }
+
+/* event plan: the truck pulls in and stays parked; the street stops moving */
+.hero.parked .pan svg, .hero.parked .road .dash, .hero.parked .rig { animation: none; }
+.hero.parked .truck-wrap .wheel svg { animation-iteration-count: 2; }
+
+/* small copies of the scene inside plan cards */
+.scene-card { position: relative; overflow: hidden; border-radius: var(--r); }
+.scene-card .hero { position: absolute; inset: 0; height: 100%; min-height: 0; border-radius: inherit; }

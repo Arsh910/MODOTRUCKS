@@ -4,7 +4,6 @@ import { useReveal } from '../hooks/useReveal.js'
 import { resolveRoute } from './routes.js'
 import { Nav } from '../components/layout/Nav.jsx'
 import { Footer } from '../components/layout/Footer.jsx'
-import { Logo } from '../components/ui/Logo.jsx'
 
 export default function App() {
   const path = usePath().replace(/\/+$/, '') || '/'
@@ -13,7 +12,6 @@ export default function App() {
   useEffect(() => { document.title = title }, [title])
   return (
     <>
-      <div className="curtain" aria-hidden="true"><Logo compact /></div>
       <Nav path={path} />
       <main key={path}><Page {...props} /></main>
       <Footer />

@@ -1,17 +1,37 @@
-import { PageHero } from '../components/ui/PageHero.jsx'
-import { HowSteps } from '../components/how/HowSteps.jsx'
-import { AdOptions } from '../components/how/AdOptions.jsx'
-import { NextLinks } from '../components/explore/NextLinks.jsx'
-import { Marquee } from '../components/motion/Marquee.jsx'
+import { Top, Row, Caps, Stack, StackCard, Faq } from '../components/mc/Blocks.jsx'
+import { WhiteTruck } from '../components/how/WhiteTruck.jsx'
+import { STEPS, CREATIVE, AD_PERKS } from '../data/how.js'
+import { FAQ } from '../data/contact.js'
 
 export default function HowItWorksPage() {
   return (
     <>
-      <PageHero img="/img/bg-avenue.jpg" label="How It Works" title="From request to the road in four steps." lead="Most requests are confirmed the same day. You get a GPS log, photos and video after every run." />
-      <Marquee items={['Send a request', 'Get your quote', 'Approve your ad', 'On the road']} />
-      <HowSteps />
-      <AdOptions />
-      <NextLinks skip="/how-it-works" />
+      <Top title="From request to the road in four steps." sub="Most requests are confirmed the same day. You get a GPS log, photos and video after every run."
+        media={<div className="top-card tint-mint"><p className="corner l ink">How it works</p><p className="corner r ink">Tuesday to Sunday · two shifts a day</p><div className="how-scene" data-reveal>
+          <div className="how-truck"><WhiteTruck /></div>
+          <ol className="how-road">{STEPS.map(([t], i) => <li key={t} style={{ '--i': i }}><i>{i + 1}</i><span>{t}</span></li>)}</ol>
+        </div></div>} />
+
+      <Row n={1} label="The steps" title="Pick a plan and your dates, send your ad, and the truck does the rest.">
+        <Caps n={2} items={STEPS.map(([t, d], i) => [t, d, `Step ${i + 1}`])} />
+      </Row>
+
+      <section id="your-ad">
+        <Stack title="Your ad: bring it, or we make it" sub="Whichever way, it is checked on the real screen and locked before the run.">
+          {CREATIVE.map((c, i) => (
+            <StackCard key={c.t} i={i} tag={c.card.tag} title={c.t} text={c.d}
+              right={<ul className="spec-list">{c.card.rows.map(([k, v]) => <li key={k}><span>{k}</span><b>{v}</b></li>)}</ul>} />
+          ))}
+        </Stack>
+      </section>
+
+      <div className="dark">
+        <Row n={2} label="Included" title="Every booking comes with this.">
+          <Caps n={2} items={AD_PERKS.map(([t, d]) => [t, d])} />
+          <a className="lime-card" href="/contact" data-reveal><b>Send a request</b><span>We reply the same day</span></a>
+        </Row>
+        <Row n={3} label="FAQ"><Faq items={FAQ} /></Row>
+      </div>
     </>
   )
 }
