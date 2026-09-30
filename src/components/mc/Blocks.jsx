@@ -27,11 +27,15 @@ export function Top({ title, sub, children, media, buttons = true }) {
 }
 
 // A numbered section: small label on the left third, content on the right.
-export function Row({ n, label, title, lead, cols, link, children, id }) {
+// `aside` fills the left column under the label (a picture or drawing).
+export function Row({ n, label, title, lead, cols, link, children, id, aside }) {
   return (
     <section className="sec" id={id}>
       <div className="wrap row">
-        <p className="label" data-reveal><i>{n}</i>{label}</p>
+        <div className="row-side">
+          <p className="label" data-reveal><i>{n}</i>{label}</p>
+          {aside && <div className="row-aside" data-reveal="media">{aside}</div>}
+        </div>
         <div className="row-body">
           {title && <h2 data-reveal>{title}</h2>}
           {lead && <p className="lead" data-reveal>{lead}</p>}

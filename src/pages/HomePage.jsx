@@ -4,6 +4,7 @@ import { AD_LINK } from '../config/site.js'
 import { PlanPics } from '../components/mc/PlanPics.jsx'
 import { CountUp } from '../components/motion/CountUp.jsx'
 import { FACTS } from '../data/home.jsx'
+import { ScreenShow } from '../components/screen/ScreenHero.jsx'
 import { REASONS } from '../data/whyUs.js'
 import { STEPS } from '../data/how.js'
 import { FAQ } from '../data/contact.js'
@@ -26,7 +27,8 @@ export default function HomePage() {
 
       <Row n={1} label="The truck" title="Imagine your brand on the one screen nobody can scroll past, at every signal in the Tricity."
         cols={['The back and the side of the truck are a single LED screen with no gap between them, so your ad flows round the corner in one piece.', 'You pick the plan, the dates and the areas. We plan the route, make the ad if you need one, and send a GPS log, photos and video after every run.']}
-        link={['/screen', 'See the screen']} />
+        link={['/screen', 'See the screen']}
+        aside={<div className="top-card tint-peach"><ScreenShow /></div>} />
 
       <Rail title="Why brands choose us" sub="The one ad in the Tricity nobody can scroll past, planned, made and proven by one team."
         cards={REASONS.map((r, i) => ({ img: r.img, contain: r.contain, title: r.t, text: r.d, tag: String(i + 1).padStart(2, '0') }))} />
